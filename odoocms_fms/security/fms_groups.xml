@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+	
+     <record id="module_category_odoocms_fms" model="ir.module.category">
+        <field name="name">CMS FMS</field>
+        <field name="description">Manage Rights for FMS</field>
+        <field name="sequence">110</field>
+     </record>
+
+	 <record id="group_cms_fms_user" model="res.groups">
+        <field name="name">FMS User</field>
+        <field name="category_id" ref="module_category_odoocms_fms"/>
+         <field name="implied_ids" eval="[(4, ref('odoocms.group_cms_user'))]"/>
+    </record>
+
+	 <record id="group_cms_fms_coordinator" model="res.groups">
+        <field name="name">FMS Coordinator</field>
+        <field name="category_id" ref="module_category_odoocms_fms"/>
+         <field name="implied_ids" eval="[(4, ref('group_cms_fms_user'))]"/>
+    </record>
+
+	 <record id="group_cms_fms_manager" model="res.groups">
+        <field name="name">FMS Manager</field>
+        <field name="category_id" ref="module_category_odoocms_fms"/>
+        <field name="implied_ids" eval="[(4, ref('group_cms_fms_coordinator'))]"/>
+    </record>
+
+	</data>
+</odoo>

@@ -1,0 +1,794 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<odoo>-->
+<!--	<data>-->
+
+<!--	<record id="view_employee_form_imherit" model="ir.ui.view">-->
+<!--        <field name="name">hr.employee.fms.form</field>-->
+<!--        <field name="model">hr.employee</field>-->
+<!--        <field name="priority" eval="50"/>-->
+<!--        <field name="inherit_id" ref="hr.view_employee_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--        	<data>-->
+<!--	            <xpath expr="//field[@name='mobile_phone']" position="attributes">-->
+<!--		            <attribute name="string">Mobile (Primary)</attribute>-->
+<!--	            </xpath>-->
+<!--	            <xpath expr="//field[@name='phone']" position="attributes">-->
+<!--		            <attribute name="string">Mobile (Secondary)</attribute>-->
+<!--	            </xpath>-->
+<!--	            <xpath expr="//field[@name='work_phone']" position="attributes">-->
+<!--		            <attribute name="string">Land Line (Res)</attribute>-->
+<!--	            </xpath>-->
+<!--	            <xpath expr="//field[@name='work_email']" position="attributes">-->
+<!--		            <attribute name="string">Email (Official)</attribute>-->
+<!--	            </xpath>-->
+<!--	            <xpath expr="//field[@name='private_email']" position="attributes">-->
+<!--		            <attribute name="string">Email</attribute>-->
+<!--	            </xpath>-->
+<!--	            <xpath expr="//field[@name='work_location']" position="attributes">-->
+<!--		            <attribute name="string">University Mailing Address</attribute>-->
+<!--	            </xpath>-->
+<!--            </data>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+<!--    <record id="view_odoocms_fms_tree" model="ir.ui.view">-->
+<!--        <field name="name">odoocms.faculty.staff.tree</field>-->
+<!--        <field name="model">odoocms.faculty.staff</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree string="Faculty">-->
+<!--                <field name="name"/>-->
+<!--                <field name="code"/>-->
+<!--                <field name="gender"/>-->
+<!--                <field name="blood_group"/>-->
+<!--                <field name="date_of_birth"/>-->
+<!--                <field name="work_email"/>-->
+<!--                <field name="phone"/>-->
+<!--                <field name="emergency_contact" />-->
+<!--             </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    <record id="view_odoocms_fms_form" model="ir.ui.view">-->
+<!--        <field name="name">odoocms.faculty.staff.form</field>-->
+<!--        <field name="model">odoocms.faculty.staff</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Faculty">-->
+<!--                <header>-->
+<!--                	&lt;!&ndash; -->
+<!--                    <button name="import_from_excel" type="object" groups="odoocms_fms.group_cms_fms_manager" string="Import Legacy Data"/>-->
+<!--                     &ndash;&gt;-->
+<!--                </header>-->
+<!--                <sheet>-->
+<!--                    <div class="oe_button_box" name="button_box" >-->
+<!--	                    <button name="show_hr_con_leave" type="object" groups="odoocms_fms.group_cms_fms_manager"-->
+<!--		                     class="oe_stat_button" icon="fa-pagelines" string="Leave Record">-->
+<!--	                    </button>-->
+<!--	                    <button name="show_hr_emp" context="{'default_faculty_staff_id':active_id}" type="object" groups="odoocms_fms.group_cms_fms_manager"-->
+<!--	                    class="oe_stat_button" icon="fa-gears">-->
+<!--	                        <field name="master_cnt" widget="statinfo" string="Employee Record History"/>-->
+<!--	                    </button>-->
+<!--	                    <button name="show_hr_con_renew" context="{'default_faculty_staff_id':active_id}" type="object" groups="odoocms_fms.group_cms_fms_manager"-->
+<!--	                    class="oe_stat_button" icon="fa-anchor"   >-->
+<!--	                        <field name="renew_cnt" widget="statinfo" string="Contract Renewal"/>-->
+<!--	                    </button>-->
+<!--	                    <button name="show_hr_visit_abroad"  context="{'default_faculty_staff_id':active_id}" type="object" groups="odoocms_fms.group_cms_fms_manager"-->
+<!--	                    class="oe_stat_button" icon="fa-flag-o">-->
+<!--		                    <field name="va_cnt" widget="statinfo" string="Abroad Visits"/>-->
+<!--	                    </button>-->
+<!--	                    <button name="show_hr_probation" context="{'default_faculty_staff_id':active_id}" type="object" groups="odoocms_fms.group_cms_fms_manager"-->
+<!--	                    class="oe_stat_button" icon="fa-dashboard">-->
+<!--		                    <field name="probation_cnt" widget="statinfo" string="Probation"/>-->
+<!--	                    </button>-->
+<!--	                    <button name="show_hr_fin_inc" context="{'default_faculty_staff_id':active_id}" type="object" groups="odoocms_fms.group_cms_fms_manager"-->
+<!--	                    class="oe_stat_button" icon="fa-money">-->
+<!--		                    <field name="incentive_cnt" widget="statinfo" string="Financial Incentive"/>-->
+<!--	                    </button>-->
+<!--	                    <button name="show_hr_ad_duty" context="{'default_faculty_staff_id':active_id}" type="object" groups="odoocms_fms.group_cms_fms_manager"-->
+<!--	                    class="oe_stat_button" icon="fa-plus-square">-->
+<!--		                    <field name="add_duty_cnt" widget="statinfo" string="Additional Duty"/>-->
+<!--	                    </button>-->
+<!--	                    <button name="show_hr_discipline" context="{'default_faculty_staff_id':active_id}" type="object" groups="odoocms_fms.group_cms_fms_manager"-->
+<!--	                    class="oe_stat_button" icon="fa-plus-square">-->
+<!--		                    <field name="discipline_cnt" widget="statinfo" string="Discipline Record"/>-->
+<!--	                    </button>-->
+<!--                    </div>-->
+<!--	                <field name="image_1920" widget='image' class="oe_avatar" options='{"preview_image":"image_128"}'/>-->
+<!--                    <div class="oe_title">-->
+<!--                        <h1>-->
+<!--                            <table>-->
+<!--                                <tr>-->
+<!--                                    <td style="padding-right:10px;">-->
+<!--	                                    <field name="name"   required="1" readonly="0" placeholder="First Name"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                            </table>-->
+<!--                        </h1>-->
+<!--                    </div>-->
+<!--                    <group>-->
+<!--                        <group  colspan="1" >-->
+<!--                            <h2 style="color:blue">Personal Information</h2>-->
+<!--                            <field name="cnic_no_fms"  required="1" placeholder="99999-9999999-9"/>-->
+<!--                            <field name="code" />-->
+<!--                            <field name="religion" />-->
+<!--                            <field name="sect_fms" />-->
+<!--                            <field name="blood_group" />-->
+<!--                            <field name="domocile_fms" />-->
+<!--                            <field name="marital_status" />-->
+<!--							<field name="birthday" /> -->
+<!--							<field name="emp_age" />                          -->
+<!--                            <field name="confirmation" />-->
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                             <h2 style="color:blue">Campus Status</h2>-->
+<!--                                <field name="designation" />-->
+<!--								<field name="additional_duty" />                                -->
+<!--                                <field name="institute" />-->
+<!--                                <field name="department" />-->
+<!--	                            <field name="ebps" />-->
+<!--                                <field name="employed_from" />-->
+<!--                                <field name="employee_status" invisible="1"/>-->
+<!--                                <field name="employee_category" invisible="1"/>-->
+<!--                                <field name="hr_emp_pay_pkg_type" invisible="1"/>-->
+
+<!--                                <field name="fms_acad_qualification" invisible="0"/>-->
+
+<!--                                <field name="hr_emp_project" invisible="1"/>-->
+<!--                                <field name="hr_emp_type" invisible="1"/>-->
+<!--                                <field name="hr_emp_action_type" invisible="1"/>-->
+<!--                                <field name="nust_campus_fms"/>-->
+
+<!--                        </group>-->
+<!--                        </group>-->
+<!--                        <notebook>-->
+<!--					&lt;!&ndash; Contact Page&ndash;&gt;-->
+<!--                        <page name="Contact_info" string="Contact">-->
+<!--                            <group>-->
+<!--                              	<group>-->
+<!--	                                <h2 style="color:blue">Contact Details</h2>-->
+<!--	                                <field name="mobile_phone" />-->
+<!--	                                <field name="phone" />-->
+<!--		                            <field name="landline_office" />-->
+<!--	                                <field name="work_phone" />-->
+<!--	                                <field name="work_email" />-->
+<!--	                                <field name="private_email" />-->
+<!--	                                <field name="work_location" />-->
+<!--                                </group>-->
+<!--                                <group>-->
+<!--                                    <h2 style="color:blue">Father Information</h2>-->
+<!--                                    <field name="father_name"/>-->
+<!--                                    <field name="father_cnic" placeholder="99999-9999999-9"/>-->
+<!--                                    <field name="father_address"/>-->
+<!--                                    <field name="father_profession"/>-->
+<!--                                    <field name="father_status"/>-->
+<!--                                    <field name="agree_status_fms"/>-->
+<!--                                </group>-->
+<!--                                <group>-->
+<!--                                    <h2 style="color:blue">Emergency Contact</h2>-->
+<!--                                    <field name="emergency_contact"/>-->
+<!--                                    <field name="emergency_phone"/>-->
+<!--                                </group>-->
+<!--                                <group>-->
+<!--                                    <h2 style="color:blue">Social Contacts</h2>-->
+<!--                                    <field name="skype_fms"/>-->
+<!--                                    <field name="profile_fms"/>-->
+<!--                                    <field name="linkedin_fms"/>-->
+<!--                                    <field name="twitter_fms"/>-->
+<!--                                    <field name="facebook_fms"/>-->
+<!--                                    <field name="google_fms"/>-->
+<!--                                </group>-->
+<!--                            </group>-->
+<!--                        </page>-->
+<!--						&lt;!&ndash; Passport Page&ndash;&gt;-->
+<!--                        <page name="emp_passport_info" string="Passport">-->
+<!--                            <field name="passport_ids">-->
+<!--                                <tree editable="bottom" delete="true">-->
+<!--                                    <field name="passport_no"/>-->
+<!--                                    <field name="date_issue"/>-->
+<!--                                    <field name="date_expiry"/>-->
+<!--                                    <field name="booklet_no"/>-->
+<!--                                    <field name="country_id" options="{'no_create':True}"/>-->
+<!--                                    <field name="issue_body" options="{'no_create':True}"/>-->
+<!--                                </tree>-->
+<!--                                &lt;!&ndash;Below is the Form View of fms_passport table &ndash;&gt;-->
+<!--                                <form >-->
+<!--                                    <group>-->
+<!--                                    <field name="passport_no"/>-->
+<!--                                    <field name="date_issue"/>-->
+<!--                                    <field name="date_expiry"/>-->
+<!--                                    <field name="booklet_no"/>-->
+<!--                                    <field name="country_id" options="{'no_create':True}"/>-->
+<!--                                    <field name="issue_body" options="{'no_create':True}"/>-->
+<!--                                    </group>-->
+<!--                                    <h style="color:grey">I solemnly affirm that the forgoing information given is true, complete and correct to the best of my knowledge and belief </h>-->
+<!--                                </form>-->
+<!--                               </field>-->
+<!--                        </page>-->
+<!--						&lt;!&ndash; Scholarships/MemberShip Page&ndash;&gt;-->
+<!--                        <page name="emp_scholar_info" string="Scholarships">-->
+<!--                            <field name="scholarship_ids">-->
+<!--                                <tree delete="true">-->
+<!--                                    <field name="type"/>-->
+<!--                                    <field name="award_body"/>-->
+<!--                                    <field name="date_from"/>-->
+<!--                                    <field name="date_to"/>-->
+<!--                                    <field name="description"/>-->
+<!--                                    <field name="obligation"/>-->
+<!--                                </tree>-->
+<!--                                &lt;!&ndash;Below is the Form View of odoocms.scholarships table&ndash;&gt;-->
+<!--                                <form>-->
+<!--                                    <group col="4" colspan="0">-->
+<!--                                    <field  style="width:100%" name="type"/>-->
+<!--                                    <field  style="width:100%" name="award_body"/>-->
+<!--                                    <field  style="width:100%" name="date_from"/>-->
+<!--                                    <field  style="width:100%" name="date_to"/>-->
+<!--                                    <field  style="width:100%" name="obligation"/>-->
+<!--                                    <field  style="width:100%" name="description"/>-->
+<!--                                    </group>-->
+<!--                                    <h style="color:grey">I solemnly affirm that the forgoing information given is true, complete and correct to the best of my knowledge and belief </h>-->
+<!--                                </form>-->
+<!--                                </field>-->
+<!--                        </page>-->
+<!--						&lt;!&ndash; Honor/Award Page&ndash;&gt;-->
+<!--                        <page name="emp_honor_award_info" string="Honor/Award">-->
+<!--                            <field name="award_ids">-->
+<!--                                <tree delete="true">-->
+<!--                                    <field  name="type"/>-->
+<!--                                    <field  name="nomination"/>-->
+<!--                                    <field  name="status"/>-->
+<!--                                    <field  name="awarding_body"/>-->
+<!--                                    <field  name="name"/>-->
+<!--                                    <field  name="country_id"/>-->
+<!--                                    <field  name="date"/>-->
+<!--                                    <field  name="description"/>-->
+<!--                                </tree>-->
+<!--                                &lt;!&ndash;Below is the Form View of odoocms.scholarships table&ndash;&gt;-->
+<!--                                <form>-->
+<!--                                    <group >-->
+<!--                                        <group col="4" colspan="2">-->
+<!--                                            <field   style="width:100%" name="type"/>-->
+<!--                                            <field   style="width:100%" name="nomination"/>-->
+<!--                                            <field   style="width:100%" name="status"/>-->
+<!--                                            <field   style="width:100%" name="awarding_body"/>-->
+<!--                                            <field   style="width:100%" name="name"/>-->
+<!--                                            <field   style="width:100%" name="country_id"/>-->
+<!--                                            <field  style="width:100%" name="date"/>-->
+<!--                                            <field  style="width:100%" name="description"/>-->
+<!--                                        </group>-->
+<!--                                    </group>-->
+<!--                                    <h style="color:grey">I solemnly affirm that the forgoing information given is true, complete and correct to the best of my knowledge and belief </h>-->
+<!--                                </form>-->
+<!--                                </field>-->
+<!--                        </page>-->
+<!--						&lt;!&ndash; Next of Kin Page&ndash;&gt;-->
+<!--                        <page name="emp_next_kin_info" string="Next of Kin">-->
+<!--                            <field name="nok_ids" string="Next of Kin Record">-->
+<!--                                <tree delete="true">-->
+<!--                                    <field name="name"/>-->
+<!--                                    <field name="relationship"/>-->
+<!--                                    <field name="description"/>-->
+<!--                                    <field name="cnic"/>-->
+<!--                                    <field name="contact_no"/>-->
+<!--                                    <field name="address_id"/>-->
+<!--                                    <field name="percentage"/>-->
+<!--&lt;!&ndash;                                    <field name="islamic_law"/>&ndash;&gt;-->
+<!--                                </tree>-->
+<!--                                &lt;!&ndash;Below is the Form View of odoocms.scholarships table &ndash;&gt;-->
+<!--                                <form>-->
+<!--                                    <group>-->
+<!--                                    <group col="4" colspan="2">-->
+<!--                                        <field  style="width:100%" name="name" attrs="{'readonly':[('islamic_law', '=', True)]}"/>-->
+<!--                                        <field  style="width:100%" name="relationship" attrs="{'readonly':[('islamic_law', '=', True)]}"/>-->
+<!--                                        <field  style="width:100%" name="description" attrs="{'readonly':[('islamic_law', '=', True)]}"/>-->
+<!--                                        <field  style="width:100%" name="cnic" placeholder="99999-9999999-9" attrs="{'readonly':[('islamic_law', '=', True)]}"/>-->
+<!--                                        <field  style="width:100%" name="contact_no" attrs="{'readonly':[('islamic_law', '=', True)]}"/>-->
+<!--                                        <field  style="width:100%" name="address_id" attrs="{'readonly':[('islamic_law', '=', True)]}"/>-->
+<!--                                        <field  style="width:100%" name="percentage" attrs="{'readonly':[('islamic_law', '=', True)]}"/>-->
+<!--                                        <field  style="width:100%" name="islamic_law"/>-->
+<!--                                    </group>-->
+<!--                                    </group>-->
+<!--                                    <h style="color:grey">I solemnly affirm that the forgoing information given is true, complete and correct to the best of my knowledge and belief </h>-->
+<!--                               </form>-->
+<!--                            </field>-->
+<!--                        </page>-->
+<!--						&lt;!&ndash; Training/Course Page&ndash;&gt;-->
+<!--                        <page name="emp_train_info" string="Training/Courses/Workshops">-->
+<!--                            <field name="training_ids" string="Training/Course/Workshop Record">-->
+<!--                                <tree delete="true">-->
+<!--                                    <field  name="type"/>-->
+<!--                                    <field  name="name"/>-->
+<!--                                    <field  name="date_from"/>-->
+<!--                                    <field  name="date_to"/>-->
+<!--                                    <field  name="center"/>-->
+<!--                                    <field  name="org_body"/>-->
+<!--                                    <field  name="sponsor_body"/>-->
+<!--                                    <field  name="sponsor_by"/>-->
+<!--                                    <field  name="organized_by"/>-->
+<!--                                </tree>-->
+<!--                                &lt;!&ndash;Below is the Form View of odoocms.scholarships table&ndash;&gt;-->
+<!--                                <form>-->
+<!--                                    <group>-->
+<!--                                    <group  col="4" colspan="2">-->
+<!--                                        <field  style="width:100%" name="type"/>-->
+<!--                                        <field  style="width:100%" name="name"/>-->
+<!--                                        <field  style="width:100%" name="date_from"/>-->
+<!--                                        <field  style="width:100%" name="date_to"/>-->
+<!--                                        <field  style="width:100%" name="center"/>-->
+<!--                                        <field  style="width:100%" name="org_body"/>-->
+<!--                                        <field  style="width:100%" name="sponsor_body"/>-->
+<!--                                        <field  style="width:100%" name="sponsor_by"/>-->
+<!--                                        <field  style="width:100%" name="organized_by"/>-->
+<!--                                    </group>-->
+<!--                                    </group>-->
+<!--                                    <h style="color:grey">I solemnly affirm that the forgoing information given is true, complete and correct to the best of my knowledge and belief </h>-->
+<!--                                  </form>-->
+
+<!--                               </field>-->
+<!--                        </page>-->
+<!--						&lt;!&ndash; Collaborations Page&ndash;&gt;-->
+<!--                        <page name="emp_collaboration_info" string="Collaborations">-->
+<!--                            <field name="collaboration_ids">-->
+<!--                                <tree delete="true">-->
+<!--                                    <field name="coll_type"/>-->
+<!--                                    <field name="date_from"/>-->
+<!--                                    <field name="date_to"/>-->
+<!--                                    <field name="organization"/>-->
+<!--                                    <field name="country_id"/>-->
+<!--                                    <field name="status"/>-->
+<!--                                </tree>-->
+<!--                                &lt;!&ndash;Below is the Form View of odoocms.scholarships table&ndash;&gt;-->
+<!--                                <form>-->
+<!--                                    <group  col="4" colspan="2">-->
+<!--                                        <field  style="width:100%" name="coll_type"/>-->
+<!--                                        <field  style="width:100%" name="date_from"/>-->
+<!--                                        <field  style="width:100%" name="date_to"/>-->
+<!--                                        <field  style="width:100%" name="organization"/>-->
+<!--                                        <field  style="width:100%" name="country_id"/>-->
+<!--                                        <field  style="width:100%" name="status"/>-->
+<!--                                    </group>-->
+<!--                                    <h style="color:grey">I solemnly affirm that the forgoing information given is true, complete and correct to the best of my knowledge and belief </h>-->
+<!--                                </form>-->
+<!--                                </field>-->
+<!--                        </page>-->
+<!--						&lt;!&ndash; Experience Page&ndash;&gt;-->
+<!--                        <page name="emp_experience_info" string="Experience">-->
+<!--                            <field name="experience_ids" string="Faculty Experience Record">-->
+<!--                                 <tree delete="true">-->
+<!--                                    <field name="experience_type"/>-->
+<!--                                    <field name="designation"/>-->
+<!--                                    <field name="org_name"/>-->
+<!--                                    <field name="org_address"/>-->
+<!--                                    <field name="date_from"/>-->
+<!--                                    <field name="date_to"/>-->
+<!--									<field name="fmn_unit_dept" />              -->
+<!--									<field name="co_hod_name" />                                    -->
+<!--									<field name="experience_duration" />                                    -->
+<!--                                    <field name="job_description"/>-->
+<!--                                    <field name="reason"/>-->
+<!--                                    <field name="miltray"/>-->
+<!--                                    <field name="ref_name"/>-->
+<!--                                    <field name="ref_designation"/>-->
+<!--                                    <field name="ref_mobile"/>-->
+<!--                                    <field name="ref_landline"/>-->
+<!--                                    <field name="ref_email"/>-->
+<!--                                    <field name="confirmation"/>-->
+<!--                                </tree>-->
+<!--                                 &lt;!&ndash;Below is the Form View of odoocms.experience table &ndash;&gt;-->
+<!--                                <form>-->
+<!--                                    <group>-->
+<!--	                                    <group  col="4" colspan="2">-->
+<!--	                                        <field  style="width:100%" name="experience_type"/>-->
+<!--	                                        <field  style="width:100%" name="designation"/>-->
+<!--	                                        <field  style="width:100%" name="org_name"/>-->
+<!--	                                        <field  style="width:100%" name="org_address"/>-->
+<!--	                                        <field  style="width:100%" name="date_from"/>-->
+<!--	                                        <field  style="width:100%" name="date_to"/>-->
+<!--	                                        <field  style="width:100%" name="job_description"/>-->
+<!--	                                        <field  style="width:100%" name="reason"/>-->
+<!--	                                        <field  style="width:100%" name="miltray"/>-->
+<!--											<field name="fmn_unit_dept" />              -->
+<!--											<field name="co_hod_name" />                                    -->
+<!--											<field name="experience_duration" />                                    -->
+<!--	                                    </group>-->
+<!--	                                    <h2 style="color:blue">Job References </h2>-->
+<!--	                                    <br></br>-->
+<!--                                        <group col="4" colspan="2">-->
+<!--                                            <field  style="width:100%" name="ref_name"/>-->
+<!--                                            <field  style="width:100%" name="ref_designation"/>-->
+<!--                                            <field  style="width:100%" name="ref_mobile"/>-->
+<!--                                            <field  style="width:100%" name="ref_landline"/>-->
+<!--                                            <field  style="width:100%" name="ref_email"/>-->
+<!--&lt;!&ndash;                                            <field  style="width:100%" name="confirmation"/>&ndash;&gt;-->
+<!--                                        </group>-->
+<!--                                   </group>-->
+<!--                                    <h style="color:grey">I solemnly affirm that the forgoing information given is true, complete and correct to the best of my knowledge and belief </h>-->
+<!--                                </form>-->
+<!--                            </field>-->
+<!--                        </page>-->
+<!--						&lt;!&ndash; Project Page&ndash;&gt;-->
+<!--                        <page name="emp_project_info" string="Project">-->
+<!--                        <field name="project_ids"  string="Faculty Project Record">-->
+<!--                                 <tree delete="true">-->
+<!--                                    <field name="project_type"/>-->
+<!--                                    <field name="status"/>-->
+<!--                                    <field name="remun"/>-->
+<!--                                    <field name="remun_amount"/>-->
+<!--                                    <field name="agency"/>-->
+<!--                                    <field name="date_from"/>-->
+<!--                                    <field name="date_to"/>-->
+<!--                                    <field name="url"/>-->
+<!--                                    <field name="position"/>-->
+<!--                                    <field name="remun_co"/>-->
+<!--                                    <field name="grant"/>-->
+<!--                                    <field name="grant_amount"/>-->
+<!--                                    <field name="transfer_amount"/>-->
+<!--                                  </tree>-->
+<!--                                &lt;!&ndash;Below is the Form View of odoocms.scholarships table &ndash;&gt;-->
+<!--                                <form>-->
+<!--                                    <group col="4" colspan="2">-->
+<!--                                        <field  style="width:100%" name="project_type"/>-->
+<!--                                        <field  style="width:100%" name="status"/>-->
+<!--                                        <field  style="width:100%" name="remun"/>-->
+<!--                                        <field  style="width:100%" name="remun_amount"/>-->
+<!--                                        <field  style="width:100%" name="agency"/>-->
+<!--                                        <field  style="width:100%" name="date_from"/>-->
+<!--                                        <field  style="width:100%" name="date_to"/>-->
+<!--                                        <field  style="width:100%" name="url"/>-->
+<!--                                        <field  style="width:100%" name="position"/>-->
+<!--                                        <field  style="width:100%" name="remun_co"/>-->
+<!--                                        <field  style="width:100%" name="grant"/>-->
+<!--                                        <field  style="width:100%" name="grant_amount"/>-->
+<!--                                        <field  style="width:100%" name="transfer_amount"/>-->
+<!--                                    </group>-->
+<!--                                    <h style="color:grey">I solemnly affirm that the forgoing information given is true, complete and correct to the best of my knowledge and belief </h>-->
+<!--                                </form>-->
+<!--                                </field>-->
+<!--                        </page>-->
+<!--						&lt;!&ndash; Defence Family Page&ndash;&gt;-->
+<!--                        <page name="emp_family_info" string="Family">-->
+<!--                            <field name="family_ids"  string="Faculty Spouse Record">-->
+<!--                                 <tree delete="true">-->
+<!--                                    <field name="name"/>-->
+<!--                                    <field name="dob"/>-->
+<!--                                    <field name="nationality_p"/>-->
+<!--                                    <field name="nationality_s"/>-->
+<!--                                    <field name="dom"/>-->
+<!--                                    <field name="marriage_place"/>-->
+<!--                                    <field name="cnic" />-->
+<!--                                    <field name="profession"/>-->
+<!--                                    <field name="status"/>-->
+<!--                                    <field name="designation"/>-->
+<!--                                    <field name="family_employer"/>-->
+<!--                                    <field name="employer_name"/>-->
+<!--                                 </tree>-->
+<!--                                &lt;!&ndash;Below is the Form View of odoocms.family table &ndash;&gt;-->
+<!--                                <form>-->
+<!--                                    <group col="4" colspan="2">-->
+<!--                                        <field style="width:100%" name="name"/>-->
+<!--                                        <field style="width:100%" name="dob"/>-->
+<!--                                        <field style="width:100%" name="nationality_p"/>-->
+<!--                                        <field style="width:100%" name="nationality_s"/>-->
+<!--                                        <field style="width:100%" name="dom"/>-->
+<!--                                        <field style="width:100%" name="marriage_place"/>-->
+<!--                                        <field style="width:100%" name="cnic" placeholder="99999-9999999-9"/>-->
+<!--                                        <field style="width:100%" name="profession"/>-->
+<!--                                        <field style="width:100%" name="status"/>-->
+<!--                                        <field style="width:100%" name="designation"/>-->
+<!--                                        <field style="width:100%" name="family_employer"/>-->
+<!--                                        <field style="width:100%" name="employer_name"/>-->
+<!--                                    </group>-->
+<!--                                </form>-->
+<!--                            </field>-->
+<!--                            <field name="family_children_ids"  string="Faculty Children Record">-->
+<!--                                <tree delete="true">-->
+<!--                                        <field name="name"/>-->
+<!--                                        <field name="birth_place"/>-->
+<!--                                        <field name="birth_date"/>-->
+<!--                                        <field name="gender"/>-->
+<!--                                        <field name="age"/>-->
+<!--                                        <field name="disability_type"/>-->
+<!--                                        <field name="disablity_desc"/>-->
+<!--                                 </tree>-->
+<!--                                <form>-->
+<!--                                <group col="4" colspan="2">-->
+<!--                                        <field style="width:100%" name="name"/>-->
+<!--                                        <field style="width:100%" name="birth_place"/>-->
+<!--                                        <field style="width:100%" name="birth_date"/>-->
+<!--                                        <field style="width:100%" name="gender"/>-->
+<!--                                        <field style="width:100%" name="age"/>-->
+<!--                                        <field style="width:100%" name="disability_type"/>-->
+<!--                                        <field style="width:100%" name="disablity_desc"/>-->
+<!--                                </group>-->
+<!--                                </form>-->
+<!--                            </field>-->
+<!--                        </page>-->
+<!--						&lt;!&ndash; Professional Qual/Cert Page&ndash;&gt;-->
+<!--                        <page name="emp_prof_info" string="Qualification/Certification">-->
+<!--                            <field name="profqualification_ids"  string="Faculty Professional Qualification/Certification Record">-->
+<!--                                <tree delete="true">-->
+<!--                                    <field name="fms_profqualification_cert"/>-->
+<!--                                    <field name="fms_profqualification_status"/>-->
+<!--                                    <field name="fms_profqualification_inst"/>-->
+<!--                                    <field name="fms_profqualification_country"/>-->
+<!--                                    <field name="fms_profqualification_dt_from"/>-->
+<!--                                    <field name="fms_profqualification_dt_to"/>-->
+<!--                                    <field name="fms_profqualification_div"/>-->
+<!--                                    <field name="fms_profqualification_miltary"/>-->
+<!--&lt;!&ndash;                                    <field name="confirmation" />&ndash;&gt;-->
+<!--                                  </tree>-->
+<!--                                &lt;!&ndash;Below is the Form View of odoocms.scholarships table &ndash;&gt;-->
+<!--                                <form>-->
+<!--                                    <group col="4" colspan="2">-->
+<!--                                        <field style="width:100%" name="fms_profqualification_cert"/>-->
+<!--                                        <field style="width:100%" name="fms_profqualification_status"/>-->
+<!--                                        <field style="width:100%" name="fms_profqualification_inst"/>-->
+<!--                                        <field style="width:100%" name="fms_profqualification_country"/>-->
+<!--                                        <field style="width:100%" name="fms_profqualification_dt_from"/>-->
+<!--                                        <field style="width:100%" name="fms_profqualification_dt_to"/>-->
+<!--                                        <field style="width:100%" name="fms_profqualification_div"/>-->
+<!--                                        <field style="width:100%" name="fms_profqualification_miltary"/>-->
+<!--&lt;!&ndash;                                        <field style="width:100%" name="confirmation" />&ndash;&gt;-->
+<!--                                    </group>-->
+<!--                                    <h style="color:grey">I solemnly affirm that the forgoing information given is true, complete and correct to the best of my knowledge and belief </h>-->
+<!--                                   </form>-->
+
+<!--                                </field>-->
+<!--                        </page>-->
+<!--						&lt;!&ndash; Courses Taught Page&ndash;&gt;-->
+<!--                        <page name="emp_course_taught_info" string="Courses Taught">-->
+<!--                         <field name="course_ids">-->
+<!--                                <tree delete="true">-->
+<!--                                    <field name="term_id" options="{'no_create':True}"/>-->
+<!--                                    <field name="course_id" options="{'no_create':True}"/>-->
+<!--                                </tree>-->
+<!--                                &lt;!&ndash;Below is the Form View of fms_passport table &ndash;&gt;-->
+<!--                                <form >-->
+<!--                                    <group>-->
+<!--                                    <field name="term_id" options="{'no_create':True}"/>-->
+<!--                                    <field name="course_id" options="{'no_create':True}"/>-->
+<!--                                    </group>-->
+<!--                                </form>-->
+<!--                               </field>-->
+<!--                        </page>-->
+<!--						&lt;!&ndash; Defence Employee Page&ndash;&gt;-->
+<!--                        <page name="defence_emp_info" string="Defence Employee">-->
+<!--                        <field name="defence_ids" string="Faculty Defence">-->
+<!--                                <tree delete="true">-->
+<!--                                    <field name="service_id" options="{'no_create':True}"/>-->
+<!--                                    <field name="rank" options="{'no_create':True}"/>-->
+<!--                                    <field name="arm" options="{'no_create':True}"/>-->
+<!--                                    <field name="service_no" />-->
+<!--                                    <field name="doc" />-->
+<!--                                    <field name="served_to" />-->
+<!--                                    <field name="emp_status" />-->
+<!--                                    <field name="course" />-->
+<!--                                    <field name="remarks" />-->
+<!--                                </tree>-->
+<!--                                &lt;!&ndash; Below is the Form View of fms_Defence_Employee table &ndash;&gt;-->
+<!--                                <form >-->
+<!--                                    <group col="4" colspan="2">-->
+<!--                                    <field style="width:100%" name="service_id" options="{'no_create':True}"/>-->
+<!--                                    <field style="width:100%" name="rank" options="{'no_create':True}"/>-->
+<!--                                    <field style="width:100%" name="arm" options="{'no_create':True}"/>-->
+<!--                                    <field style="width:100%" name="service_no" />-->
+<!--                                    <field style="width:100%" name="doc" />-->
+<!--                                    <field style="width:100%" name="served_to" />-->
+<!--                                    <field style="width:100%" name="emp_status" />-->
+<!--                                    <field style="width:100%" name="course" />-->
+<!--                                    <field style="width:100%" name="remarks" />-->
+<!--                                    </group>-->
+<!--                                 </form>-->
+<!--                          </field>-->
+<!--                        </page>-->
+<!--						&lt;!&ndash; Skills Page&ndash;&gt;-->
+<!--                        <page name="emp_skill_info" string="Skills">-->
+<!--                        <field name="skill_ids" string="Faculty Skill">-->
+<!--                                <tree delete="true">-->
+<!--                                    <field name="skill_type" />-->
+<!--                                    <field name="description" />-->
+<!--                                </tree>-->
+<!--                                &lt;!&ndash; Below is the Form View of fms_Skill table &ndash;&gt;-->
+<!--                                <form>-->
+<!--                                    <group col="4" colspan="2">-->
+<!--                                    <field style="width:100%" name="skill_type" />-->
+<!--                                    <field style="width:100%" name="description" />-->
+<!--                                    </group>-->
+<!--                                </form>-->
+<!--                          </field>-->
+<!--                        </page>-->
+<!--						&lt;!&ndash; Professional Registration Page&ndash;&gt;-->
+<!--                        <page name="emp_prof_reg_info" string="Prof Registration">-->
+<!--                        <field name="fms_prof_reg_ids" string="Faculty Professional Registration">-->
+<!--                                <tree delete="true">-->
+<!--                                    <field name="reg_body" />-->
+<!--                                    <field name="reg_no" />-->
+<!--                                    <field name="reg_date" />-->
+<!--                                    <field name="reg_validity" />-->
+<!--                                </tree>-->
+<!--                                &lt;!&ndash;Below is the Form View of fms_prof_reg table &ndash;&gt;-->
+<!--                                <form >-->
+<!--                                    <group col="4" colspan="2">-->
+<!--                                    <field style="width:100%" name="reg_body" />-->
+<!--                                    <field style="width:100%" name="reg_no" />-->
+<!--                                    <field style="width:100%" name="reg_date" />-->
+<!--                                    <field style="width:100%" name="reg_validity" />-->
+<!--                                    </group>-->
+<!--                                    <h style="color:grey">I solemnly affirm that the forgoing information given is true, complete and correct to the best of my knowledge and belief </h>-->
+<!--                                </form>-->
+<!--                          </field>-->
+<!--                        </page>-->
+<!--						&lt;!&ndash; HEC PHD Supervisor Page&ndash;&gt;-->
+<!--                        <page name="emp_hec_info" string="HEC Approved PhD Supervisors">-->
+<!--                         <field name="fms_hec_ids" string="Faculty HEC Approved PHD Supervisors">-->
+<!--                                <tree delete="true">-->
+<!--                                     <field name="status" />-->
+<!--                                     <field name="curr_status_date" />-->
+<!--                                     <field name="valid_till_date" />-->
+<!--                                     <field name="remarks" />-->
+<!--                                </tree>-->
+<!--                                <form>-->
+<!--                                    <group col="4" colspan="2">-->
+<!--                                     <field style="width:100%" name="status" />-->
+<!--                                     <field style="width:100%" name="curr_status_date" />-->
+<!--                                     <field style="width:100%" name="valid_till_date" />-->
+<!--                                     <field style="width:100%" name="remarks" />-->
+<!--                                    </group>-->
+<!--                                </form>-->
+<!--                          </field>-->
+<!--                        </page>-->
+<!--					&lt;!&ndash; Academic Page&ndash;&gt;-->
+<!--                     <page name="emp_academic_info" string="Academic">-->
+<!--                         <field name="fms_academic_ids" string="Faculty Academic">-->
+<!--                                <tree delete="true">-->
+<!--                                    <field name="fms_acad_qualification" options="{'no_create':True}"/>-->
+<!--                                    <field name="fms_acad_uni" options="{'no_create':True}"/>-->
+<!--                                    <field name="fms_acad_country" options="{'no_create':True}"/>-->
+<!--                                    <field name="fms_acad_degree" />-->
+<!--                                    <field name="fms_acad_degree_duration" />-->
+<!--                                    <field name="fms_acad_special" />-->
+<!--                                    <field name="fms_acad_total_perc" />-->
+<!--                                    <field name="fms_acad_obt_perc" />-->
+<!--                                    <field name="fms_acad_dur_from" />-->
+<!--                                    <field name="fms_acad_dur_to" />-->
+<!--                                    <field name="fms_acad_deg_status" />-->
+<!--                                    <field name="fms_acad_deg_ver" />-->
+<!--                                    <field name="fms_acad_deg_cat" />-->
+<!--&lt;!&ndash;                                    <field name="confirmation" />&ndash;&gt;-->
+<!--                                </tree>-->
+<!--                                <form>-->
+<!--                                    <group>-->
+<!--	                                    <group col="4" colspan="2">-->
+<!--		                                    <field style="width:65%" name="fms_acad_qualification" options="{'no_create':True}"/>-->
+<!--		                                    <field style="width:65%" name="fms_acad_uni" options="{'no_create':True}"/>-->
+<!--		                                    <field style="width:65%" name="fms_acad_country" options="{'no_create':True}"/>-->
+<!--		                                    <field style="width:65%" name="fms_acad_degree" />-->
+<!--		                                    <field style="width:65%" name="fms_acad_degree_duration" />-->
+<!--		                                    <field style="width:65%" name="fms_acad_special" />-->
+<!--		                                    <field style="width:65%" name="fms_acad_total_perc" />-->
+<!--		                                    <field style="width:65%" name="fms_acad_obt_perc" />-->
+<!--		                                    <field style="width:65%" name="fms_acad_dur_from" />-->
+<!--		                                    <field style="width:65%" name="fms_acad_dur_to" />-->
+<!--		                                    <field style="width:65%" name="fms_acad_deg_status" />-->
+<!--		                                    <field style="width:65%" name="fms_acad_deg_ver" />-->
+<!--		                                    <field style="width:65%" name="fms_acad_deg_cat" options="{'no_create':True}"/>-->
+<!--		                                    <field style="width:65%" name="fms_attachment" filename="fms_attachment_filename" />-->
+<!--		                                    <field style="width:65%" name="fms_attachment_filename"/>-->
+<!--	                                    </group>-->
+<!--&lt;!&ndash;	                                    <field style="width:100%" name="confirmation" />&ndash;&gt;-->
+<!--                                    </group>-->
+<!--                                    <h style="color:grey">I solemnly affirm that the forgoing information given is true, complete and correct to the best of my knowledge and belief </h>-->
+<!--                                </form>-->
+<!--                          </field>-->
+<!--                     </page>-->
+<!--					 &lt;!&ndash; Academic Workload Page&ndash;&gt;-->
+<!-- 					 <page name="emp_acad_workload_info" string="Academic Workload">-->
+<!--					 </page>-->
+<!--					 &lt;!&ndash; Student Supervised Page&ndash;&gt;-->
+<!--                     <page name="emp_student_sup_info" string="Student Supervised">-->
+<!--                     </page>-->
+<!--                    </notebook>-->
+<!--                </sheet>-->
+<!--                <div class="oe_chatter">-->
+<!--                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>-->
+<!--                    <field name="activity_ids" widget="mail_activity"/>-->
+<!--                    <field name="message_ids" widget="mail_thread"/>-->
+<!--                </div>-->
+
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--    -->
+<!--	&lt;!&ndash;Search View for Faculty Staff &ndash;&gt;-->
+<!--    <record id="view_odoocms_fms_search" model="ir.ui.view">-->
+<!--        <field name="name">odoocms.faculty.staff.search</field>-->
+<!--        <field name="model">odoocms.faculty.staff</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <search string="Faculty">-->
+<!--                <field name="name"/>-->
+<!--                <field name="code"/>-->
+<!--                <field name="blood_group"/>-->
+<!--                <field name="institute"/>-->
+<!--                <field name="department"/>-->
+<!--                <field name="designation"/>-->
+<!--                <field name="cnic_no_fms" />-->
+<!--                <field name="gender" />-->
+<!--                <field name="marital_status" />-->
+<!--                <field name="ebps" />-->
+<!--                <separator/>-->
+<!--                <filter string="Active" name="active" domain="[('employee_status', '=', 'A')]" help="Active Records"/>-->
+<!--                <filter string="In Active" name="inactive" domain="[('employee_status', '=', 'I')]" help="In Active Records"/>-->
+<!--                <separator/>-->
+<!--                <filter string="Faculty" name="faculty_categ" domain="[('employee_category', '=', 'F')]" help="Faculty Records"/>-->
+<!--                <filter string="Support Staff" name="support_staff" domain="[('employee_category', '=', 'S')]" help="Support Staff Records"/>-->
+<!--                <separator/>-->
+<!--                <filter string="Lumpsum" name="lumpsum" domain="[('hr_emp_pay_pkg_type', '=', 'L')]" help="LumpSum Pay Package holders"/>-->
+<!--                <filter string="BPS" name="bps" domain="[('hr_emp_pay_pkg_type', '=', 'B')]" help="BPS Package Holders"/>-->
+<!--                <separator/>-->
+<!--                &lt;!&ndash; -->
+<!--                <filter string="New Joining" name="newjoining" domain="[('hr_emp_action_type', '=', 'NJ')]"/>-->
+<!--                <filter string="Deceased" name="deceased" domain="[('hr_emp_action_type', '=', 'D')]" />-->
+<!--                <filter string="Absent" name="absent" domain="[('hr_emp_action_type', '=', 'A')]" />-->
+<!--                <separator/>-->
+<!--                <filter string="HHFP" name="p1" domain="[('hr_emp_project', '=', 'P1')]"/>-->
+<!--                <filter string="IPSP" name="p2" domain="[('hr_emp_project', '=', 'P2')]" />-->
+<!--                <filter string="USPCASE" name="p3" domain="[('hr_emp_project', '=', 'P3')]" />-->
+<!--                 &ndash;&gt;-->
+<!--                <separator/>-->
+<!--                <filter string="Contract" name="contract" domain="[('hr_emp_type', '=', 'C')]" />-->
+<!--                <filter string="Regular" name="regular" domain="[('hr_emp_type', '=', 'R')]" />-->
+<!--                <group expand="0" string="Group By">-->
+<!--                    <filter string="Institute" name="group_by_inst" domain="[]" context="{'group_by': 'institute'}"/>-->
+<!--                    <filter string="Department" name="group_by_department" domain="[]" context="{'group_by': 'department'}"/>-->
+<!--                    <filter string="Designation" name="group_by_designation" domain="[]" context="{'group_by': 'designation'}"/>-->
+<!--                    <filter string="BPS" name="group_by_ebps" domain="[]" context="{'group_by': 'ebps'}"/>-->
+<!--                    <filter string="Pay Package Type" name="group_by_hr_emp_pay_pkg_type" domain="[]" context="{'group_by': 'hr_emp_pay_pkg_type'}"/>-->
+<!--                    <filter string="Project" name="group_by_hr_emp_project" domain="[]" context="{'group_by': 'hr_emp_project'}"/>-->
+<!--                    <filter string="Action Type" name="group_by_hr_emp_action_type" domain="[]" context="{'group_by': 'hr_emp_action_type'}"/>-->
+<!--                    <filter string="Category" name="group_by_employee_category" domain="[]" context="{'group_by': 'employee_category'}"/>-->
+<!--                    <filter string="Status" name="group_by_employee_status" domain="[]" context="{'group_by': 'employee_status'}"/>-->
+<!--                    <filter string="Employee Type" name="group_by_hr_emp_type" domain="[]" context="{'group_by': 'hr_emp_type'}"/>-->
+<!--                </group>-->
+<!--            </search>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    <record id="view_odoocms_fms_pivot" model="ir.ui.view">-->
+<!--        <field name="name">odoocms.faculty.staff.pivot</field>-->
+<!--        <field name="model">odoocms.faculty.staff</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <pivot string="Faculty" display_quantity="true">-->
+<!--                <field name="id"/>-->
+<!--            </pivot>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    <record id="action_odoocms_fms" model="ir.actions.act_window">-->
+<!--        <field name="name">Faculty Staff</field>-->
+<!--        <field name="res_model">odoocms.faculty.staff</field>-->
+<!--        <field name="view_mode">kanban,tree,pivot,form</field>-->
+<!--        <field name="search_view_id" ref="view_odoocms_fms_search"/>-->
+<!--        <field name="domain">[]</field>-->
+<!--        <field name="context">{}</field>-->
+<!--        &lt;!&ndash; -->
+<!--        <field name="view_ids"-->
+<!--               eval="[(5, 0, 0),-->
+<!--                    (0, 0, {'view_mode': 'tree', 'view_id': ref('view_odoocms_fms_tree')}),-->
+<!--                    (0, 0, {'view_mode': 'form', 'view_id': ref('view_odoocms_fms_form')}),-->
+<!--               ]"/>-->
+<!--         &ndash;&gt;-->
+<!--        <field name="help" type="html">-->
+<!--            <p class="oe_view_nocontent_create">-->
+<!--                Create the First Faculty Member here.-->
+<!--            </p>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    <menuitem-->
+<!--            id="menu_odoocms_faculty_staff"-->
+<!--            name="Faculty Staff"-->
+<!--            parent="menu_odoocms_faculty_root"-->
+<!--            action="action_odoocms_fms"-->
+<!--            sequence="10"/>-->
+
+<!--	</data>-->
+<!--</odoo>-->

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="faculty_profile_head_fms" name="Faculty Profile Head" inherit_id="odoocms_faculty_portal.faculty_profile_head">
+        <xpath expr="//span[@name='staff_code']" position="after">
+            <span class="sub-heading" ><t t-esc="faculty_staff.designation.hr_desig_short_desc"/> - <t class="sub-heading"  t-esc="faculty_staff.institute.name" /></span>
+            <span class="sub-heading"  t-esc="faculty_staff.department.name" />
+        </xpath>
+        <xpath expr="//div[@name='staff_profile']/h2" position="after">
+            <ul class="user_stats">
+                 <li t-if="employed_from">
+                     <h4 class="heading_a" t-esc="employed_from.hr_emp_eff_dt"/>
+                     <span class="sub-heading">EMPLOYED FROM</span>
+                 </li>
+            </ul>
+        </xpath>
+    </template>
+    <template id="faculty_profile_head_fms_emploee_home" name="Faculty Profile Head" inherit_id="odoocms_faculty_portal.faculty_profile_head_home">
+        <xpath expr="//div[@name='staff_profile']/h2" position="after">
+            <ul class="user_stats">
+                 <li t-if="employed_from">
+                     <h4 class="heading_a" t-esc="employed_from.hr_emp_eff_dt"/>
+                     <span class="sub-heading">EMPLOYED FROM</span>
+                 </li>
+            </ul>
+        </xpath>
+    </template>
+</odoo>

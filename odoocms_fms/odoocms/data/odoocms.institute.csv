@@ -1,0 +1,24 @@
+id,name,code,parent_id:id,campus_id:id,phone,website,effective_date
+odoocms.institute_asab,ATTA-UR-RAHMAN SCHOOL OF APPLIED BIOSCIENCES,ASAB,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_cips,CENTRE FOR INTERNATIONAL PEACE & STABILITY,CIPS,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_nbs,NUST BUSINESS SCHOOL,NBS,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_rcms,RESEARCH CENTRE FOR MODELLING & SIMULATION,RCMS,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_rimms,RESEARCH INSTITUTE FOR MICROWAVE AND MILLIMETER-WAVE STUDIES,RIMMS,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_sada,"SCHOOL OF ART, DESIGN AND ARCHITECTURE",SADA,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_scme,SCHOOL OF CHEMICAL & MATERIALS ENGINEERING,SCME,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_scee,SCHOOL OF CIVIL & ENVIRONMENTAL ENGINEERING,SCEE,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_scee_igis,INSTITUTE OF GEOGRAPHICAL INFORMATION SYSTEMS,IGIS,odoocms.institute_scee,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_scee_iese,INSTITUTE OF ENVIRONMENTAL SCIENCES & ENGINEERING,IESE,odoocms.institute_scee,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_scee_nice,NUST INSTITUTE OF CIVIL ENGINEERING,NICE,odoocms.institute_scee,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_scee_nit,NATIONAL INSTITUTE OF TRANSPORTATION,NIT,odoocms.institute_scee,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_seecs,SCHOOL OF ELECTRICAL ENGINEERING & COMPUTER SCIENCE ,SEECS,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_smme,SCHOOL OF MECHANICAL & MANUFACTURING ENGINEERING,SMME,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_sns,SCHOOL OF NATURAL SCIENCES,SNS,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_s3h,SCHOOL OF SOCIAL SCIENCES & HUMANITIES,S3H,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_uspcase,U.S.-PAKISTAN CENTER FOR ADVANCED STUDIES IN ENERGY,USPCAS-E,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_cae,COLLEGE OF AERONAUTICAL ENGINEERING,CAE,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_ceme,COLLEGE OF ELECTRICAL & MECHANICAL ENGINEERING,CEME,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_mce,MILITARY COLLEGE OF ENGINEERING,MCE,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_mcs,MILITARY COLLEGE OF SIGNALS,MCS,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_pnec,PAKISTAN NAVY ENGINEERING COLLEGE,PNEC,,odoocms.campus_h12,,,1991-03-01
+odoocms.institute_nbc,NUST BALOCHISTAN CAMPUS,NBC,,odoocms.campus_h12,,,1991-03-01

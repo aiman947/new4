@@ -1,0 +1,8 @@
+id,name,code,city,effective_date,active,street,street2,country_id,description,short_description,formal_description
+odoocms.campus_h12,H-12 Campus,H-12,Islamabad,1991-03-01,1,45,789,Pakistan,H-12 Campus,H-12 Campus,H-12 Campus
+odoocms.campus_eme,EME Campus,EME,Rawalpindi,1991-03-01,1,46,790,Pakistan,COLLEGE OF ELECTRICAL & MECHANICAL ENGINEERING,EME Campus,COLLEGE OF ELECTRICAL & MECHANICAL ENGINEERING
+odoocms.campus_mce,MCE Campus,MCE,Risalpur,1991-03-01,1,47,791,Pakistan,MILITARY COLLEGE OF ENGINEERING,MCE Campus,MILITARY COLLEGE OF ENGINEERING
+odoocms.campus_mcs,MCS Campus,MCS,Rawalpindi,1991-03-01,1,48,792,Pakistan,MILITARY COLLEGE OF SIGNALS,MCS Campus,MILITARY COLLEGE OF SIGNALS
+odoocms.campus_cae,CAE Campus,CAE,Risalpur,1991-03-01,1,49,793,Pakistan,COLLEGE OF AERONAUTICAL ENGINEERING,CAE Campus,COLLEGE OF AERONAUTICAL ENGINEERING
+odoocms.campus_pnec,PNEC Campus,PNEC,Karachi,1991-03-01,1,50,794,Pakistan,PAKISTAN NAVY ENGINEERING COLLEGE,PNEC Campus,PAKISTAN NAVY ENGINEERING COLLEGE
+odoocms.campus_nbc,Quetta Campus,NBC,Quetta,1991-03-01,1,51,795,Pakistan,NUST BALOCHISTAN CAMPUS,Quetta Campus,NUST BALOCHISTAN CAMPUS

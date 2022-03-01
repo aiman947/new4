@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+
+
+        <!--        department-->
+
+        <record id="odoocms_department_doc" model="odoocms.department">
+            <field name="name">Department Of Computer</field>
+            <field name="code">DOC</field>
+            <field name="effective_date" eval="time.strftime('%Y-%m')+'-01'"/>
+            <field name="active">1</field>
+            <!--            <field name="institute_id" ref="odoocms_institute_scee"/>-->
+        </record>
+
+
+             <!--        specialization-->
+        <record id="odoocms_specialization_information_security" model="odoocms.specialization">
+            <field name="name">Information Security</field>
+            <field name="code">IS</field>
+            <field name="description">Information Security Description</field>
+        </record>
+
+
+
+        <!--term-->
+        <record id="term_f18" model="odoocms.academic.term">
+            <field name="name">Fall 2018</field>
+            <field name="code">Fall-18</field>
+            <field name="short_code">F18</field>
+            <field name="type">regular</field>
+            <field name="description">f18 Term</field>
+        </record>
+        <record id="term_f19" model="odoocms.academic.term">
+            <field name="name">Fall 2019</field>
+            <field name="code">Fall-19</field>
+            <field name="short_code">F19</field>
+            <field name="type">regular</field>
+            <field name="description">f19 Term</field>
+        </record>
+        <record id="term_f20" model="odoocms.academic.term">
+            <field name="name">Fall 2020</field>
+            <field name="code">Fall-20</field>
+            <field name="short_code">F20</field>
+            <field name="type">regular</field>
+            <field name="description">f20 Term</field>
+        </record>
+
+        <!--term detail-->
+        <record id="term_detail_f19A" model="odoocms.academic.term.line">
+            <field name="term_id" ref="term_f19"/>
+            <field name="name">F19A</field>
+            <field name="date_start">2019-10-01</field>
+            <field name="date_end">2020-02-25</field>
+        </record>
+        <record id="term_detail_f19B" model="odoocms.academic.term.line">
+            <field name="term_id" ref="term_f19"/>
+            <field name="name">F19B</field>
+            <field name="date_start">2019-10-01</field>
+            <field name="date_end">2020-02-25</field>
+        </record>
+        <record id="term_detail_f20" model="odoocms.academic.term.line">
+            <field name="term_id" ref="term_f20"/>
+            <field name="name">D19C</field>
+            <field name="date_start">2019-10-01</field>
+            <field name="date_end">2020-02-25</field>
+        </record>
+
+
+        <!--        <record id="odoocms_roomtype_1" model="odoocms.room.type">-->
+        <!--            <field name="name">Computing Laboratories</field>-->
+        <!--            <field name="code">computingLab</field>-->
+        <!--            <field name="type">Room</field>-->
+        <!--        </record>-->
+
+        <!--        <record id="odoocms_roomtype_1" model="odoocms.room.type">-->
+        <!--            <field name="name">Additional Instructional Rooms</field>-->
+        <!--            <field name="code">departmental</field>-->
+        <!--            <field name="type">Room</field>-->
+        <!--        </record>-->
+
+        <!--        <record id="odoocms_roomtype_1" model="odoocms.room.type">-->
+        <!--            <field name="name">Special Use Rooms</field>-->
+        <!--            <field name="code">specialUse</field>-->
+        <!--            <field name="type">Room</field>-->
+        <!--        </record>-->
+
+        <!--        <record id="odoocms_roomtype_1" model="odoocms.room.type">-->
+        <!--            <field name="name">Outside Locations</field>-->
+        <!--            <field name="code">nonUniversity</field>-->
+        <!--            <field name="type">Other</field>-->
+        <!--        </record>-->
+
+    </data>
+</odoo>

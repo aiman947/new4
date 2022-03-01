@@ -1,0 +1,161 @@
+<!--<odoo>-->
+<!--<data>-->
+
+
+<!--    <record id="portal_menu_profile_family" model="odoocms.faculty.portal.menu">-->
+<!--        <field name="name">Family</field>-->
+<!--        <field name="code">family</field>-->
+<!--        <field name="title">Home</field>-->
+<!--        <field name="href">/faculty/profile/family</field>-->
+<!--        <field name="parent_id" ref="odoocms_faculty_portal.portal_menu_profile"/>-->
+<!--        <field name="enable_external">True</field>-->
+<!--        <field name="visible_external">True</field>-->
+<!--        <field name="sequence">110</field>-->
+<!--    </record>-->
+
+<!--    <record id="portal_menu_profile_nok" model="odoocms.faculty.portal.menu">-->
+<!--        <field name="name">Next of Kin</field>-->
+<!--        <field name="code">nok</field>-->
+<!--        <field name="title">Home</field>-->
+<!--        <field name="href">/faculty/profile/nok</field>-->
+<!--        <field name="parent_id" ref="odoocms_faculty_portal.portal_menu_profile"/>-->
+<!--        <field name="enable_external">True</field>-->
+<!--        <field name="visible_external">True</field>-->
+<!--        <field name="sequence">115</field>-->
+<!--    </record>-->
+
+<!--    <record id="portal_menu_profile_passport" model="odoocms.faculty.portal.menu">-->
+<!--        <field name="name">Passport</field>-->
+<!--        <field name="code">passport</field>-->
+<!--        <field name="title">Passport</field>-->
+<!--        <field name="href">/faculty/profile/passport</field>-->
+<!--        <field name="parent_id" ref="odoocms_faculty_portal.portal_menu_profile"/>-->
+<!--        <field name="enable_external">True</field>-->
+<!--        <field name="visible_external">True</field>-->
+<!--        <field name="sequence">120</field>-->
+<!--    </record>-->
+
+<!--    <record id="portal_menu_profile_acad" model="odoocms.faculty.portal.menu">-->
+<!--        <field name="name">Academics</field>-->
+<!--        <field name="code">acad</field>-->
+<!--        <field name="title">Academics</field>-->
+<!--        <field name="href">/faculty/profile/acad</field>-->
+<!--        <field name="parent_id" ref="odoocms_faculty_portal.portal_menu_profile"/>-->
+<!--        <field name="enable_external">True</field>-->
+<!--        <field name="visible_external">True</field>-->
+<!--        <field name="sequence">125</field>-->
+<!--    </record>-->
+
+<!--    <record id="portal_menu_profile_experience" model="odoocms.faculty.portal.menu">-->
+<!--        <field name="name">Experience</field>-->
+<!--        <field name="code">experience</field>-->
+<!--        <field name="title">Experience</field>-->
+<!--        <field name="href">/faculty/profile/experience</field>-->
+<!--        <field name="parent_id" ref="odoocms_faculty_portal.portal_menu_profile"/>-->
+<!--        <field name="enable_external">True</field>-->
+<!--        <field name="visible_external">True</field>-->
+<!--        <field name="sequence">130</field>-->
+<!--    </record>-->
+
+<!--     <record id="portal_menu_profile_skill" model="odoocms.faculty.portal.menu">-->
+<!--        <field name="name">Skills</field>-->
+<!--        <field name="code">skill</field>-->
+<!--        <field name="title">Skills</field>-->
+<!--        <field name="href">/faculty/profile/skill</field>-->
+<!--        <field name="parent_id" ref="odoocms_faculty_portal.portal_menu_profile"/>-->
+<!--        <field name="enable_external">True</field>-->
+<!--        <field name="visible_external">True</field>-->
+<!--         <field name="sequence">135</field>-->
+<!--    </record>-->
+
+<!--     <record id="portal_menu_profile_certification" model="odoocms.faculty.portal.menu">-->
+<!--        <field name="name">Certifications</field>-->
+<!--        <field name="code">certification</field>-->
+<!--        <field name="title">Certifications</field>-->
+<!--        <field name="href">/faculty/profile/certification</field>-->
+<!--        <field name="parent_id" ref="odoocms_faculty_portal.portal_menu_profile"/>-->
+<!--        <field name="enable_external">True</field>-->
+<!--        <field name="visible_external">True</field>-->
+<!--         <field name="sequence">140</field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash;<record id="portal_menu_profile_training" model="odoocms.faculty.portal.menu">-->
+<!--        <field name="name">Training/Workshops</field>-->
+<!--        <field name="code">training</field>-->
+<!--        <field name="title">Training/Workshops</field>-->
+<!--        <field name="href">/faculty/profile/training</field>-->
+<!--        <field name="parent_id" ref="odoocms_faculty_portal.portal_menu_profile"/>-->
+<!--        <field name="enable_external">True</field>-->
+<!--        <field name="visible_external">True</field>-->
+<!--        <field name="sequence">145</field>-->
+<!--    </record>-->
+
+<!--    <record id="portal_menu_profile_award" model="odoocms.faculty.portal.menu">-->
+<!--        <field name="name">Honor/Awards</field>-->
+<!--        <field name="code">award</field>-->
+<!--        <field name="title">Honor/Awards</field>-->
+<!--        <field name="href">/faculty/profile/award</field>-->
+<!--        <field name="parent_id" ref="odoocms_faculty_portal.portal_menu_profile"/>-->
+<!--        <field name="enable_external">True</field>-->
+<!--        <field name="visible_external">True</field>-->
+<!--        <field name="sequence">150</field>-->
+<!--    </record>-->
+
+<!--    <record id="portal_menu_profile_scholar" model="odoocms.faculty.portal.menu">-->
+<!--        <field name="name">Scholarships</field>-->
+<!--        <field name="code">scholar</field>-->
+<!--        <field name="title">Scholarships</field>-->
+<!--        <field name="href">/faculty/profile/scholar</field>-->
+<!--        <field name="parent_id" ref="odoocms_faculty_portal.portal_menu_profile"/>-->
+<!--        <field name="enable_external">True</field>-->
+<!--        <field name="visible_external">True</field>-->
+<!--        <field name="sequence">155</field>-->
+<!--    </record>-->
+
+<!--    <record id="portal_menu_profile_collaboration" model="odoocms.faculty.portal.menu">-->
+<!--        <field name="name">Collaborations</field>-->
+<!--        <field name="code">award</field>-->
+<!--        <field name="title">Collaborations</field>-->
+<!--        <field name="href">/faculty/profile/collaboration</field>-->
+<!--        <field name="parent_id" ref="odoocms_faculty_portal.portal_menu_profile"/>-->
+<!--        <field name="enable_external">True</field>-->
+<!--        <field name="visible_external">True</field>-->
+<!--        <field name="sequence">160</field>-->
+<!--    </record>-->
+
+<!--    <record id="portal_menu_profile_defence" model="odoocms.faculty.portal.menu">-->
+<!--        <field name="name">Defence Employee</field>-->
+<!--        <field name="code">defence</field>-->
+<!--        <field name="title">Defence Employee</field>-->
+<!--        <field name="href">/faculty/profile/defence</field>-->
+<!--        <field name="parent_id" ref="odoocms_faculty_portal.portal_menu_profile"/>-->
+<!--        <field name="enable_external">True</field>-->
+<!--        <field name="visible_external">True</field>-->
+<!--        <field name="sequence">165</field>-->
+<!--    </record>-->
+
+<!--    <record id="portal_menu_profile_prof_reg" model="odoocms.faculty.portal.menu">-->
+<!--        <field name="name">Prof Registration</field>-->
+<!--        <field name="code">prof_reg</field>-->
+<!--        <field name="title">Prof Registration</field>-->
+<!--        <field name="href">/faculty/profile/prof/reg</field>-->
+<!--        <field name="parent_id" ref="odoocms_faculty_portal.portal_menu_profile"/>-->
+<!--        <field name="enable_external">True</field>-->
+<!--        <field name="visible_external">True</field>-->
+<!--        <field name="sequence">170</field>-->
+<!--    </record>-->
+
+<!--    <record id="portal_menu_profile_hec" model="odoocms.faculty.portal.menu">-->
+<!--        <field name="name">HEC Approved PHD Scholarships</field>-->
+<!--        <field name="code">hec</field>-->
+<!--        <field name="title">HEC Approved PHD Scholarships</field>-->
+<!--        <field name="href">/faculty/profile/hec</field>-->
+<!--        <field name="parent_id" ref="odoocms_faculty_portal.portal_menu_profile"/>-->
+<!--        <field name="enable_external">True</field>-->
+<!--        <field name="visible_external">True</field>-->
+<!--        <field name="sequence">175</field>-->
+<!--    </record>&ndash;&gt;-->
+
+
+<!--</data>-->
+<!--</odoo>-->

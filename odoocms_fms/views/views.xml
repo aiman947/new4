@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="odoocms_fms.list">
+      <field name="name">odoocms_fms list</field>
+      <field name="model">odoocms_fms.odoocms_fms</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="odoocms_fms.action_window">
+      <field name="name">odoocms_fms window</field>
+      <field name="res_model">odoocms_fms.odoocms_fms</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="odoocms_fms.action_server">
+      <field name="name">odoocms_fms server</field>
+      <field name="model_id" ref="model_odoocms_fms_odoocms_fms"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="odoocms_fms" id="odoocms_fms.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="odoocms_fms.menu_1" parent="odoocms_fms.menu_root"/>
+    <menuitem name="Menu 2" id="odoocms_fms.menu_2" parent="odoocms_fms.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="odoocms_fms.menu_1_list" parent="odoocms_fms.menu_1"
+              action="odoocms_fms.action_window"/>
+    <menuitem name="Server to list" id="odoocms_fms" parent="odoocms_fms.menu_2"
+              action="odoocms_fms.action_server"/>
+-->
+  </data>
+</odoo>

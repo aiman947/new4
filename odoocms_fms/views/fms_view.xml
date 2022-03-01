@@ -1,0 +1,1095 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<odoo>-->
+<!--	<data>-->
+<!--	-->
+<!--	    <record id="action_faculty_create_employee" model="ir.actions.act_window">-->
+<!--	        <field name="name">Create Employee</field>-->
+<!--	        <field name="res_model">wizard.faculty.employee</field>-->
+<!--	    </record>-->
+
+<!--	    &lt;!&ndash; HR Academic Category View&ndash;&gt;-->
+<!--	    <record id="view_odoocms_hr_acad_categ_tree" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.acad.category.tree</field>-->
+<!--	        <field name="model">odoocms.acad.category</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <tree string="Category" editable="bottom">-->
+<!--	            	<field name="name" />-->
+<!--	            </tree>-->
+<!--	           </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash; HR Designation setup Tree View&ndash;&gt;-->
+<!--	    <record id="view_odoocms_hr_desig_tree" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.designation.tree</field>-->
+<!--	        <field name="model">odoocms.designation</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <tree string="Designation" editable="bottom">-->
+<!--	            	<field name="code" invisible="1" />-->
+<!--	                <field name="hr_desig_short_desc" />-->
+<!--	                <field name="hr_desig_long_desc" />-->
+<!--	                <field name="hr_desg_type" />-->
+<!--	                <field name="faculty_type" />-->
+<!--	                <field name="hr_desg_status" />-->
+<!--	            </tree>-->
+<!--	           </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash; HR Qualification setup Tree View&ndash;&gt;-->
+<!--	    <record id="view_odoocms_hr_qual_tree" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.qualification.tree</field>-->
+<!--	        <field name="model">odoocms.hr.qualification</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <tree string="Qualification" editable="bottom">-->
+<!--		            <field name="code" invisible="1" />-->
+<!--	                <field name="hr_qual_short_desc" />-->
+<!--	                <field name="hr_qual_long_desc" />-->
+<!--	                <field name="hr_qual_status" />-->
+<!--	                <field name="hr_qual_desc" />-->
+<!--	            </tree>-->
+<!--	           </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash; HR Competent Authority Setup Tree View&ndash;&gt;-->
+<!--	    <record id="view_odoocms_hr_ca_tree" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.ca.tree</field>-->
+<!--	        <field name="model">odoocms.hr.ca</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <tree string="Competent Authority" editable="bottom">-->
+<!--		            <field name="code" invisible="1" />-->
+<!--	                <field name="hr_ca_body_type" />-->
+<!--	                <field name="hr_ca_name" />-->
+<!--	                <field name="hr_ca_code" />-->
+<!--	                <field name="hr_ca_level" />-->
+<!--	                <field name="hr_ca_status" />-->
+<!--	            </tree>-->
+<!--	           </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash; HR Competent Authority Meeting Setup Tree View&ndash;&gt;-->
+<!--	    <record id="view_odoocms_hr_ca_meeting_tree" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.ca.meeting.tree</field>-->
+<!--	        <field name="model">odoocms.hr.ca.meeting</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <tree string="Competent Authority Meeting" editable="bottom">-->
+<!--		            <field name="code" invisible="1" />-->
+<!--	                <field name="hr_ca_id" options="{'no_create':True}"/>-->
+<!--	                <field name="hr_ca_meeting_dt" />-->
+<!--	                <field name="hr_ca_meeting_chairby" />-->
+<!--	                <field name="hr_ca_emp_id" />-->
+<!--	                <field name="hr_ca_meeting_remarks" />-->
+<!--	            </tree>-->
+<!--	           </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash; HR University Setup Tree View&ndash;&gt;-->
+<!--	    <record id="view_odoocms_hr_uni_tree" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.uni.tree</field>-->
+<!--	        <field name="model">odoocms.hr.university</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <tree string="Competent Authority Meeting" editable="bottom">-->
+<!--		            <field name="code" invisible="1" />-->
+<!--	                <field name="hr_uni_desc_long" options="{'no_create':True}"/>-->
+<!--	                <field name="hr_uni_desc_short" />-->
+<!--	                <field name="hr_uni_country_code" />-->
+<!--	                <field name="hr_uni_type" />-->
+<!--	                <field name="hr_uni_status" />-->
+<!--	            </tree>-->
+<!--	           </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash; HR Scale Setup Tree View&ndash;&gt;-->
+<!--	    <record id="view_odoocms_hr_scale_tree" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.scale.tree</field>-->
+<!--	        <field name="model">odoocms.hr.scale</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <tree string="Scale" editable="bottom">-->
+<!--		            <field name="code" invisible="1" />-->
+<!--	                <field name="hr_scale_no" options="{'no_create':True}"/>-->
+<!--	                <field name="hr_scale_desc" />-->
+<!--	            </tree>-->
+<!--	           </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash; HR Forces Setup Tree View&ndash;&gt;-->
+<!--	    <record id="view_odoocms_hr_force_tree" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.force.tree</field>-->
+<!--	        <field name="model">odoocms.hr.forces</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <tree string="Forces" editable="bottom">-->
+<!--		            <field name="code" invisible="1" />-->
+<!--	                <field name="hr_force_desc" />-->
+<!--	                <field name="hr_force_status" />-->
+<!--	            </tree>-->
+<!--	           </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash; HR Arms Setup Tree View&ndash;&gt;-->
+<!--	    <record id="view_odoocms_hr_arm_tree" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.arm.tree</field>-->
+<!--	        <field name="model">odoocms.hr.arm</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <tree string="ARMS" editable="bottom">-->
+<!--		            <field name="code" invisible="1" />-->
+<!--	                <field name="hr_arm_desc" />-->
+<!--	                <field name="hr_arm_status" />-->
+<!--	            </tree>-->
+<!--	           </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash; HR Ranks Setup Tree View&ndash;&gt;-->
+<!--	    <record id="view_odoocms_hr_rank_tree" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.rank.tree</field>-->
+<!--	        <field name="model">odoocms.hr.ranks</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <tree string="Ranks" editable="bottom">-->
+<!--		            <field name="code" invisible="1" />-->
+<!--	                <field name="hr_rank_desc" />-->
+<!--	                <field name="hr_rank_status" />-->
+<!--	            </tree>-->
+<!--	           </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash;POST SETUP PAGE FIELDS AND (FORM VIEW)>&ndash;&gt;-->
+<!--	    <record id="view_odoocms_post_form" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.post.form</field>-->
+<!--	        <field name="model">odoocms.hr.post</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <form string="Post Detail">-->
+<!--	                <sheet>-->
+<!--	                    <group>-->
+<!--	                        <group  colspan="1" >-->
+<!--	                            <h2 style="color:blue">Post Setup Information</h2>-->
+<!--					            <field name="code" invisible="1" />-->
+<!--	                            <field name="hr_post_name" required="1"/>-->
+<!--	                            <field name="id" required="0" string="Post Code"/>-->
+<!--	                            &lt;!&ndash;<field name="hr_post_code" required="1"/> &ndash;&gt;-->
+<!--	                        </group>-->
+<!--	                     </group>-->
+<!--	                     <notebook>-->
+<!--							&lt;!&ndash; Post Page&ndash;&gt;-->
+<!--	                        <page name="post_setup_info" string="Post Detail">-->
+<!--	                            <field name="hr_post_child_ids" string="Post Detail Record">-->
+<!--	                                <tree >-->
+<!--	                                    <field name="hr_post_dtl_ed"/>-->
+<!--	                                    <field name="hr_post_dtl_post_list"/>-->
+<!--	                                    <field name="hr_post_dtl_type"/>-->
+<!--	                                    <field name="hr_post_level"/>-->
+<!--	                                    <field name="hr_post_category"/>-->
+<!--	                                    <field name="hr_post_sub_category"/>-->
+<!--	                                    <field name="hr_post_ebps"/>-->
+<!--	                                    <field name="hr_post_sliding_scale"/>-->
+<!--	                                    <field name="hr_post_min_ebps"/>-->
+<!--	                                    <field name="hr_post_max_ebps"/>-->
+<!--	                                </tree>-->
+<!--	                                &lt;!&ndash;Below is the Form View of post table &ndash;&gt;-->
+<!--	                                <form >-->
+<!--	                                    <group>-->
+<!--	                                    <field name="hr_post_dtl_ed"/>-->
+<!--	                                    <field name="hr_post_dtl_post_list"/>-->
+<!--	                                    <field name="hr_post_dtl_type"/>-->
+<!--	                                    <field name="hr_post_level"/>-->
+<!--	                                    <field name="hr_post_category"/>-->
+<!--	                                    <field name="hr_post_sub_category"/>-->
+<!--	                                    <field name="hr_post_ebps"/>-->
+<!--	                                    <field name="hr_post_sliding_scale"/>-->
+<!--	                                    <field name="hr_post_min_ebps"/>-->
+<!--	                                    <field name="hr_post_max_ebps"/>-->
+<!--	                                    </group>-->
+<!--	                                </form>-->
+<!--	                               </field>-->
+<!--	                        </page>-->
+<!--	                    </notebook>-->
+<!--	                </sheet>-->
+<!--	            </form>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	    -->
+		<!--HR EMPLOYEE RECORD MASTER -->
+<!--		<record id="view_odoocms_hr_emp_rec_search" model="ir.ui.view">-->
+<!--			<field name="name">odoocms.hr.emp.rec.master.search</field>-->
+<!--			<field name="model">odoocms.hr.emp.rec.master</field>-->
+<!--			<field name="arch" type="xml">-->
+<!--				<search string="Search Employee Master Record">-->
+<!--	                <field name="hr_emp_placed_inst"/>-->
+<!--	                <field name="hr_emp_placed_dept"/>-->
+<!--	                <field name="hr_emp_desig"/>-->
+<!--	                <separator/>-->
+<!--	                <filter string="In Active" name="inactive" domain="[('hr_emp_status', '=', 'I')]" help="In Active Records"/>-->
+<!--	                <filter string="Faculty" name="faculty_categ" domain="[('hr_emp_category', '=', 'F')]" help="Faculty Records"/>-->
+<!--	                <filter string="Support Staff" name="support_staff" domain="[('hr_emp_category', '=', 'S')]" help="Support Staff Records"/>-->
+<!--	                <group expand="0" string="Group By">-->
+<!--	                    <filter string="Institute" name="group_by_inst" domain="[]" context="{'group_by': 'hr_emp_placed_inst'}"/>-->
+<!--	                    <filter string="Department" name="group_by_department" domain="[]" context="{'group_by': 'hr_emp_placed_dept'}"/>-->
+<!--	                    <filter string="Designation" name="group_by_designation" domain="[]" context="{'group_by': 'hr_emp_desig'}"/>-->
+<!--	                </group>-->
+<!--				</search>-->
+<!--			</field>-->
+<!--		</record>-->
+<!--		-->
+<!--		<record id="view_odoocms_hr_emp_rec_tree" model="ir.ui.view">-->
+<!--		        <field name="name">odoocms.hr.emp.rec.tree</field>-->
+<!--		        <field name="model">odoocms.hr.emp.rec.master</field>-->
+<!--		        <field name="arch" type="xml">-->
+<!--		            <tree string="Employee Record Detail"-->
+<!--				         decoration-info="hr_emp_status == 'A'"-->
+<!--				         decoration-bf="hr_emp_status == 'A'"-->
+<!--    	                 decoration-muted="hr_emp_status == 'I'">-->
+<!--		                <field name="hr_emp_desig" />-->
+<!--		                <field name="hr_emp_placed_inst" />-->
+<!--		                <field name="hr_emp_placed_dept"/>-->
+<!--		                <field name="hr_emp_eff_dt"/>-->
+<!--		                <field name="hr_emp_eff_from_dt" />-->
+<!--		                <field name="hr_emp_status"/>-->
+<!--		                <field name="hr_emp_placed_branch" />-->
+<!--		                <field name="hr_emp_post_auth_dtl" />-->
+<!--		            </tree>-->
+<!--		        </field>-->
+<!--		</record>-->
+<!--	-->
+<!--	    <record id="view_odoocms_hr_emp_rec_form" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.emp.rec.form</field>-->
+<!--	        <field name="model">odoocms.hr.emp.rec.master</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <form string="Employee Record Detail">-->
+<!--	                <header>-->
+<!--	                    <button name="status_change" type="object" groups="odoocms_fms.group_cms_fms_manager" string="Active"/>-->
+<!--	                </header>-->
+<!--	                <sheet>-->
+<!--	                      <h2 style="color:blue">Employee Record Information</h2>-->
+<!--	                      <br></br>-->
+<!--	                      <group col="4" colspan="2">-->
+<!--		                      <field style="width:100%" name="hr_emp_status" readonly="1"/>-->
+<!--		                      <field style="width:100%" name="hr_emp_eff_dt" required="0" />-->
+<!--		                      <field style="width:100%" name="hr_emp_eff_from_dt" required="0" />-->
+<!--		                      <field style="width:100%" name="hr_emp_payroll_id" />-->
+<!--		                      <field style="width:100%" name="hr_emp_placed_branch" />-->
+<!--		                      <field style="width:100%" name="hr_emp_post_auth_dtl" />-->
+<!--		                      <field style="width:100%" name="hr_emp_post_ex_auth_dtl" />-->
+<!--		                      <field style="width:100%" name="hr_emp_conflict_post" />-->
+<!--		                      <field style="width:100%" name="hr_emp_erp_post_id" />-->
+<!--		                      <field style="width:100%" name="hr_emp_salary" />-->
+<!--		                      <field style="width:100%" name="hr_emp_oo_no" />-->
+<!--		                      <field style="width:100%" name="hr_emp_oo_dt" />-->
+<!--		                      <field style="width:100%" name="hr_emp_def_status" />-->
+<!--		                      <field style="width:100%" name="hr_emp_placed_inst" required="0"/>-->
+<!--		                      <field style="width:100%" name="hr_emp_placed_dept" required="0"/>-->
+<!--		                      <field style="width:100%" name="hr_emp_ebps" />-->
+<!--		                      <field style="width:100%" name="hr_emp_desig"  required="0"/>-->
+<!--		                      <field style="width:100%" name="hr_emp_project" />-->
+<!--		                      <field style="width:100%" name="hr_emp_type" />-->
+<!--		                      <field style="width:100%" name="hr_emp_hec_supvr" type="checkbox"/>-->
+<!--		                      <field style="width:100%" name="hr_emp_sub_cat" />-->
+<!--		                      <field style="width:100%" name="hr_emp_pay_pkg_type" />-->
+<!--		                      <field style="width:100%" name="hr_emp_hiring" />-->
+<!--		                      <field style="width:100%" name="hr_emp_category" />-->
+<!--		                      <field style="width:100%" name="hr_emp_action_type" />-->
+<!--		                      <field style="width:100%" name="hr_emp_remarks" />-->
+<!--	                      </group>-->
+<!--	                     <notebook>-->
+<!--		                    <page name="emp_rec_history_info" string="Individual Authority">-->
+<!--	                            <field name="fms_hr_erm_ids" string="Individual Authority Record">-->
+<!--	                                <tree>-->
+<!--	                                    <field name="hr_emp_dtl_auth_id"/>-->
+<!--	                                    <field name="hr_emp_dtl_held_dt"/>-->
+<!--	                                    <field name="hr_emp_dtl_emp_id"/>-->
+<!--	                                    <field name="hr_emp_dtl_emp_ref"/>-->
+<!--	                                </tree>-->
+<!--	                                &lt;!&ndash;Below is the Form View of post table &ndash;&gt;-->
+<!--	                                <form>-->
+<!--	                                <group col="4" colspan="2">-->
+<!--	                                    <field style="width:100%" name="hr_emp_dtl_auth_id"/>-->
+<!--	                                    <field style="width:100%" name="hr_emp_dtl_held_dt"/>-->
+<!--	                                    <field style="width:100%" name="hr_emp_dtl_emp_id"/>-->
+<!--	                                    <field style="width:100%" name="hr_emp_dtl_emp_ref"/>-->
+<!--	                               </group>-->
+<!--	                               </form>-->
+<!--	                               </field>-->
+<!--	    	                </page>-->
+<!--	        	            <page name="emp_rec_comp_auth_info" string="Competent Authorities (Body)">-->
+<!--		                        <field name="fms_hr_ermm_ids" string="Competent Authorities (Body)">-->
+<!--		                           <tree >-->
+<!--		                               <field name="hr_emp_dtl1_auth_id"/>-->
+<!--		                               <field name="hr_emp_dtl1_gov_body_id"/>-->
+<!--		                               <field name="hr_emp_dtl1_chaired_by"/>-->
+<!--		                               <field name="hr_emp_dtl1_held_dt"/>-->
+<!--		                           </tree>-->
+<!--		                           &lt;!&ndash;Below is the Form View of post table &ndash;&gt;-->
+<!--		                           <form >-->
+<!--			                           <group col="4" colspan="2">-->
+<!--		                                    <field style="width:100%" name="hr_emp_dtl1_auth_id"/>-->
+<!--		                                    <field style="width:100%" name="hr_emp_dtl1_gov_body_id"/>-->
+<!--		                                    <field style="width:100%" name="hr_emp_dtl1_chaired_by"/>-->
+<!--		                                    <field style="width:100%" name="hr_emp_dtl1_held_dt"/>-->
+<!--		                               </group>-->
+<!--		                           </form>-->
+<!--		                        </field>-->
+<!--	                    	</page>-->
+<!--	                    </notebook>-->
+<!--	                </sheet>-->
+<!--	            </form>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    <record id="action_odoocms_emp_rec" model="ir.actions.act_window">-->
+<!--	        <field name="name">HR EMPLOYEE RECORD SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.emp.rec.master</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="view_id" ref="view_odoocms_hr_emp_rec_tree"/>-->
+<!--	        <field name="search_view_id" ref="view_odoocms_hr_emp_rec_search"/>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup Employee Record here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--		 -->
+<!--		&lt;!&ndash;HR EMPLOYEE CONTRACT RENEWAL FIELDS AND (TREE VIEW)>&ndash;&gt;-->
+<!--		<record id="view_odoocms_hr_con_renew_tree" model="ir.ui.view">-->
+<!--		        <field name="name">odoocms.hr.emp.con.renew.tree</field>-->
+<!--		        <field name="model">odoocms.hr.emp.contract.renew</field>-->
+<!--		        <field name="arch" type="xml">-->
+<!--		            <tree string="Employee Record Detail"-->
+<!--		            	decoration-info="status == 'A'"-->
+<!--				        decoration-bf="status == 'A'"-->
+<!--    	                decoration-muted="status == 'I'">-->
+<!--		                <field  name="hr_emp_con_year"/>-->
+<!--		                <field  name="hr_emp_con_bond"/>-->
+<!--		                <field  name="hr_emp_con_start_dt"/>-->
+<!--		                <field  name="hr_emp_con_end_dt"/>-->
+<!--		                <field name="status" />-->
+<!--		            </tree>-->
+<!--		        </field>-->
+<!--		</record>-->
+<!--		-->
+<!--		&lt;!&ndash;HR EMPLOYEE CONTRACT RENEWAL FIELDS AND (FORM VIEW)>&ndash;&gt;-->
+<!--	    <record id="view_odoocms_hr_con_renew_form" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.emp.con.renew.form</field>-->
+<!--	        <field name="model">odoocms.hr.emp.contract.renew</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <form string="Employee Contract Renew Detail">-->
+<!--	                <sheet>-->
+<!--	                     <h2 style="color:blue">Employee Contract Renew Information</h2>-->
+<!--	                     <group col="4" colspan="2">-->
+<!--	                     	 <field style="width:100%" name="status" readonly="1"/>-->
+<!--		                     <field style="width:100%" name="hr_emp_con_year"/>-->
+<!--		                     <field style="width:100%" name="hr_emp_con_bond"/>-->
+<!--		                     <field style="width:100%" name="hr_emp_con_start_dt"/>-->
+<!--		                     <field style="width:100%" name="hr_emp_con_end_dt"/>-->
+<!--		                     <field style="width:100%" name="hr_emp_con_oo_no" />-->
+<!--		                     <field style="width:100%" name="hr_emp_con_oo_dt"/>-->
+<!--		                     <field style="width:100%" name="hr_emp_con_remarks"/>-->
+<!--	                     </group>-->
+<!--	                     <notebook>-->
+<!--		                    <page name="individual_auth_info" string="Individual Authority">-->
+<!--	                            <field name="individual_auth" string="Individual Authority Record">-->
+<!--	                                <tree>-->
+<!--	                                    <field name="contract_renew_id" invisible="1"/>-->
+<!--	                                    <field name="hr_emp_dtl_auth_id"/>-->
+<!--	                                    <field name="authority"/>-->
+<!--	                                    <field name="hr_emp_dtl_emp_id"/>-->
+<!--	                                    <field name="hr_emp_dtl_held_dt"/>-->
+<!--	                                    <field name="name"/>-->
+<!--	                                    <field name="hr_emp_dtl_emp_ref"/>-->
+<!--	                                </tree>-->
+<!--	                                <form>-->
+<!--		                                <group col="4" colspan="2">-->
+<!--		                                    <field name="contract_renew_id" invisible="1"/>-->
+<!--		                                    <field name="hr_emp_dtl_auth_id"/>-->
+<!--		                                    <field name="authority"/>-->
+<!--		                                    <field name="hr_emp_dtl_emp_id"/>-->
+<!--		                                    <field name="hr_emp_dtl_held_dt"/>-->
+<!--		                                    <field name="name"/>-->
+<!--		                                    <field name="hr_emp_dtl_emp_ref"/>-->
+<!--		                               </group>-->
+<!--	                               </form>-->
+<!--                               </field>-->
+<!--	    	                </page>-->
+<!--	        	            <page name="approval_auth_info" string="Competent Authorities (Body)">-->
+<!--		                        <field name="approval_auth" string="Competent Authorities (Body)">-->
+<!--		                           <tree>-->
+<!--		                               <field name="name"/>-->
+<!--		                               <field name="contract_renew_id"/>-->
+<!--		                               <field name="hr_emp_dtl1_auth_id"/>-->
+<!--		                               <field name="authority"/>-->
+<!--		                               <field name="hr_emp_dtl1_gov_body_id"/>-->
+<!--		                               <field name="hr_emp_dtl1_chaired_by"/>-->
+<!--		                               <field name="hr_emp_dtl1_held_dt"/>-->
+<!--		                           </tree>-->
+<!--		                           <form>-->
+<!--			                           <group col="4" colspan="2">-->
+<!--			                               <field name="name"/>-->
+<!--			                               <field name="contract_renew_id"/>-->
+<!--			                               <field name="hr_emp_dtl1_auth_id"/>-->
+<!--			                               <field name="authority"/>-->
+<!--			                               <field name="hr_emp_dtl1_gov_body_id"/>-->
+<!--			                               <field name="hr_emp_dtl1_chaired_by"/>-->
+<!--			                               <field name="hr_emp_dtl1_held_dt"/>-->
+<!--		                               </group>-->
+<!--		                           </form>-->
+<!--		                        </field>-->
+<!--	                    	</page>-->
+<!--                    	</notebook>-->
+<!--	                </sheet>-->
+<!--	            </form>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--		&lt;!&ndash;HR EMPLOYEE CONTRACT RENEWAL MENU ACTION&ndash;&gt;-->
+<!--	    <record id="action_odoocms_emp_rec_contract_renew" model="ir.actions.act_window">-->
+<!--	        <field name="name">HR EMPLOYEE CONTRACT RENEW SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.emp.contract.renew</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	            <field name="context">-->
+<!--	                {-->
+<!--	                'search_default_faculty_staff_id': [active_id],-->
+<!--	                'default_faculty_staff_id': active_id,-->
+<!--	                }-->
+<!--	            </field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup Employee Record here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--		&lt;!&ndash;HR EMPLOYEE VISIT ABROAD FIELDS AND (TREE VIEW)>&ndash;&gt;-->
+<!--		<record id="view_odoocms_hr_visit_tree" model="ir.ui.view">-->
+<!--		        <field name="name">odoocms.hr.emp.visit.tree</field>-->
+<!--		        <field name="model">odoocms.hr.emp.visit.abroad</field>-->
+<!--		        <field name="arch" type="xml">-->
+<!--		            <tree string="Employee Record Detail">-->
+<!--		                <field  name="hr_emp_visit_type" />-->
+<!--		                <field  name="hr_emp_visit_purpose" />-->
+<!--		                <field  name="hr_emp_visit_country"/>-->
+<!--	                    <field  name="hr_emp_visit_from_dt"/>-->
+<!--	                    <field  name="hr_emp_visit_to_dt"/>-->
+<!--	                    <field  name="hr_emp_visit_approved_by"/>-->
+<!--		            </tree>-->
+<!--		        </field>-->
+<!--		</record>-->
+<!--		-->
+<!--	    &lt;!&ndash;HR EMPLOYEE VISIT ABROAD FIELDS AND (FORM VIEW)>&ndash;&gt;-->
+<!--	    <record id="view_odoocms_hr_visit_form" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.emp.visit.form</field>-->
+<!--	        <field name="model">odoocms.hr.emp.visit.abroad</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <form string="Employee Abroad Visit Detail">-->
+<!--	                <sheet>-->
+<!--	                     <h2 style="color:blue">Employee Abroad Visits Information</h2>-->
+<!--	                     <group col="4" colspan="2">-->
+<!--	                          <field style="width:100%" name="hr_emp_visit_type" />-->
+<!--	                          <field style="width:100%" name="hr_emp_visit_purpose" />-->
+<!--	                          <field style="width:100%" name="hr_emp_visit_country"/>-->
+<!--	                          <field style="width:100%" name="hr_emp_visit_from_dt"/>-->
+<!--	                          <field style="width:100%" name="hr_emp_visit_to_dt"/>-->
+<!--	                          <field style="width:100%" name="hr_emp_visit_approved_by"/>-->
+<!--	                          <field style="width:100%" name="hr_emp_visit_remarks"/>-->
+<!--	                     </group>-->
+<!--	                </sheet>-->
+<!--	            </form>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    <record id="action_odoocms_emp_rec_visit_abroad" model="ir.actions.act_window">-->
+<!--	        <field name="name">EMPLOYEE VISIT ABROAD SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.emp.visit.abroad</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="context">-->
+<!--	            {-->
+<!--	                'search_default_faculty_staff_id': [active_id],-->
+<!--	                'default_faculty_staff_id': active_id,-->
+<!--	            }-->
+<!--	        </field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup Employee Visit Abroad here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	    -->
+<!--		&lt;!&ndash;HR EMPLOYEE PROBATION FIELDS AND (TREE VIEW)>&ndash;&gt;-->
+<!--		<record id="view_odoocms_hr_probation_tree" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.emp.probation.tree</field>-->
+<!--	        <field name="model">odoocms.hr.emp.probation</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <tree string="Employee Record Detail">-->
+<!--	                   <field  name="hr_emp_prob_type"/>-->
+<!--	                   <field  name="hr_emp_prob_duration"/>-->
+<!--	                   <field  name="hr_emp_prob_start_dt"/>-->
+<!--	                   <field  name="hr_emp_prob_end_dt"/>-->
+<!--	                   &lt;!&ndash;-->
+<!--	                   <field  name="hr_emp_prob_oo_no"/>-->
+<!--	                   <field  name="hr_emp_prob_oo_dt"/>-->
+<!--	                   <field  name="hr_emp_prob_rev_oo_no"/>-->
+<!--	                   <field  name="hr_emp_prob_rev_dt"/>-->
+<!--	                   <field  name="hr_emp_prob_remarks"/>-->
+<!--	                    &ndash;&gt;-->
+<!--	            </tree>-->
+<!--	        </field>-->
+<!--		</record>-->
+<!--		-->
+<!--	    &lt;!&ndash;HR EMPLOYEE PROBATION FIELDS AND (FORM VIEW)>&ndash;&gt;-->
+<!--	    <record id="view_odoocms_hr_probation_form" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.emp.probation.form</field>-->
+<!--	        <field name="model">odoocms.hr.emp.probation</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <form string="Employee Probation Detail">-->
+<!--	                <sheet>-->
+<!--	                    <h2 style="color:blue">Employee Probation Information</h2>-->
+<!--	                        <group col="4" colspan="2">-->
+<!--	                            <field style="width:100%" name="hr_emp_prob_type" />-->
+<!--	                            <field style="width:100%" name="hr_emp_prob_duration"  />-->
+<!--	                            <field style="width:100%" name="hr_emp_prob_start_dt" />-->
+<!--	                            <field style="width:100%" name="hr_emp_prob_end_dt" />-->
+<!--	                            <field style="width:100%" name="hr_emp_prob_oo_no" />-->
+<!--	                            <field style="width:100%" name="hr_emp_prob_oo_dt"/>-->
+<!--	                            <field style="width:100%" name="hr_emp_prob_rev_oo_no" />-->
+<!--	                            <field style="width:100%" name="hr_emp_prob_rev_dt"/>-->
+<!--	                            <field style="width:100%" name="hr_emp_prob_remarks" />-->
+<!--	                        </group>-->
+<!--	                </sheet>-->
+<!--	            </form>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	    -->
+<!--		<record id="action_odoocms_emp_rec_probation" model="ir.actions.act_window">-->
+<!--	        <field name="name">EMPLOYEE PROBATION SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.emp.probation</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="context">-->
+<!--	            {-->
+<!--	                'search_default_faculty_staff_id': [active_id],-->
+<!--	                'default_faculty_staff_id': active_id,-->
+<!--	            }-->
+<!--	        </field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup Employee Probation here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	    -->
+<!--		&lt;!&ndash;HR EMPLOYEE FINANCIAL INCENTIVE FIELDS AND (TREE VIEW)>&ndash;&gt;-->
+<!--		<record id="view_odoocms_hr_fin_inc_tree" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.emp.financial.tree</field>-->
+<!--	        <field name="model">odoocms.hr.emp.fin.inc</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <tree string="Employee Record Detail">-->
+<!--		            <field  name="hr_emp_fin_cat"/>-->
+<!--		            <field  name="hr_emp_fin_type" />-->
+<!--		            <field  name="hr_emp_fin_start_dt"/>-->
+<!--		            <field  name="hr_emp_fin_end_dt"/>-->
+<!--		            <field  name="hr_emp_fin_increment_amt"/>-->
+<!--		            <field  name="hr_emp_fin_oo_no"/>-->
+<!--		            <field  name="hr_emp_fin_oo_dt"/>-->
+<!--		            <field  name="hr_emp_fin_add_duty"/>-->
+<!--	            </tree>-->
+<!--	        </field>-->
+<!--		</record>-->
+<!--		-->
+<!--	    &lt;!&ndash;HR EMPLOYEE FINANCIAL INCENTIVE FIELDS AND (FORM VIEW)>&ndash;&gt;-->
+<!--	    <record id="view_odoocms_hr_fin_inc_form" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.emp.financial.form</field>-->
+<!--	        <field name="model">odoocms.hr.emp.fin.inc</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <form string="Employee Financial Incentive">-->
+<!--	                <sheet>-->
+<!--	                    <h2 style="color:blue">Employee Financial Incentive Information</h2>-->
+<!--	                    <group col="4" colspan="2">-->
+<!--	                        <field style="width:100%" name="hr_emp_fin_cat"/>-->
+<!--	                        <field style="width:100%" name="hr_emp_fin_type" />-->
+<!--	                        <field style="width:100%" name="hr_emp_fin_start_dt"/>-->
+<!--	                        <field style="width:100%" name="hr_emp_fin_end_dt"/>-->
+<!--	                        <field style="width:100%" name="hr_emp_fin_increment_no"/>-->
+<!--	                        <field style="width:100%" name="hr_emp_fin_increment_amt"/>-->
+<!--	                        <field style="width:100%" name="hr_emp_fin_oo_no"/>-->
+<!--	                        <field style="width:100%" name="hr_emp_fin_oo_dt"/>-->
+<!--	                        <field style="width:100%" name="hr_emp_fin_add_duty"/>-->
+<!--	                        <field style="width:100%" name="hr_emp_fin_remarks"/>-->
+<!--	                    </group>-->
+<!--	                </sheet>-->
+<!--	            </form>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	    -->
+<!--		<record id="action_odoocms_emp_rec_fin_incentive" model="ir.actions.act_window">-->
+<!--	        <field name="name">EMPLOYEE FINANCIAL INCENTIVE SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.emp.fin.inc</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="context">-->
+<!--	            {-->
+<!--	                'search_default_faculty_staff_id': [active_id],-->
+<!--	                'default_faculty_staff_id': active_id,-->
+<!--	            }-->
+<!--	        </field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup Employee Visit Abroad here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	    -->
+<!--		&lt;!&ndash;HR EMPLOYEE ADDITIONAL DUTY FIELDS AND (TREE VIEW)>&ndash;&gt;-->
+<!--		<record id="view_odoocms_hr_ad_duty_tree" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.emp.ad.duty.tree</field>-->
+<!--	        <field name="model">odoocms.hr.emp.add.duty</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <tree string="Employee Record Detail"-->
+<!--	            	decoration-info="hr_emp_ad_status == 'A'"-->
+<!--			        decoration-bf="hr_emp_ad_status == 'A'"-->
+<!--   	                decoration-muted="hr_emp_ad_status == 'I'">-->
+<!--	            <field  name="hr_emp_ad_desig"/>-->
+<!--	            <field  name="hr_emp_ad_duty"/>-->
+<!--	            <field  name="hr_emp_ad_start_dt"/>-->
+<!--	            <field  name="hr_emp_ad_end_dt"/>-->
+<!--	            <field  name="hr_emp_ad_status"/>-->
+<!--	            </tree>-->
+<!--	        </field>-->
+<!--		</record>-->
+<!--		-->
+<!--		&lt;!&ndash;HR EMPLOYEE ADDITIONAL DUTY FIELDS AND (FORM VIEW)>&ndash;&gt;-->
+<!--	    <record id="view_odoocms_hr_ad_duty_form" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.emp.ad.duty.form</field>-->
+<!--	        <field name="model">odoocms.hr.emp.add.duty</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <form string="Employee Additional Duty">-->
+<!--	                <sheet>-->
+<!--	                    <group>-->
+<!--	                         <h2 style="color:blue">Employee Additional Duty Information</h2>-->
+<!--	                         <group col="4" colspan="2">-->
+<!--	                            <field style="width:100%" name="hr_emp_ad_desig"/>-->
+<!--	                            <field style="width:100%"  name="hr_emp_ad_duty"/>-->
+<!--	                            <field style="width:100%"  name="hr_emp_ad_start_dt"/>-->
+<!--	                            <field style="width:100%"  name="hr_emp_ad_end_dt"/>-->
+<!--	                            <field style="width:100%"  name="hr_emp_ad_status" readonly="1"/>-->
+<!--	                            <field style="width:100%"  name="hr_emp_ad_remarks"/>-->
+<!--	                        </group>-->
+<!--	                    </group>-->
+<!--	                </sheet>-->
+<!--	            </form>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	    -->
+<!--		<record id="action_odoocms_emp_rec_add_duty" model="ir.actions.act_window">-->
+<!--	        <field name="name">EMPLOYEE ADDITION DUTY SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.emp.add.duty</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="context">-->
+<!--	            {-->
+<!--	                'search_default_faculty_staff_id': [active_id],-->
+<!--	                'default_faculty_staff_id': active_id,-->
+<!--	            }-->
+<!--	        </field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup Employee Additional Duty here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	    -->
+<!--		<record id="view_odoocms_hr_emp_add_duty_search" model="ir.ui.view">-->
+<!--	       <field name="name">odoocms.hr.emp.add.duty.search</field>-->
+<!--	       <field name="model">odoocms.hr.emp.add.duty</field>-->
+<!--	       <field name="arch" type="xml">-->
+<!--	 	<search string="Employee Addition Duty">-->
+<!--	           <field name="hr_emp_ad_duty" filter_domain="[('hr_emp_ad_duty', 'ilike', self)]" string="Additional Duties"/>-->
+<!--	           <filter name="Additional Duties" domain="[]" context="{'group_by': 'hr_emp_ad_duty'}"/>-->
+<!--	           </search>-->
+<!--	       </field>-->
+<!--	   </record>-->
+<!--	-->
+<!--	    &lt;!&ndash;HR EMPLOYEE DICIPLINE DUTY FIELDS AND (TREE VIEW)>&ndash;&gt;-->
+<!--		<record id="view_odoocms_hr_discipline_tree" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.emp.disp.tree</field>-->
+<!--	        <field name="model">odoocms.hr.emp.discipline</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <tree string="Employee Record Detail">-->
+<!--	                <field  name="hr_emp_disp_offence_dtl"/>-->
+<!--	                <field  name="hr_emp_disp_offence_dt" />-->
+<!--	                <field  name="hr_emp_disp_offence_place"/>-->
+<!--	                <field  name="hr_emp_disp_reinstate"/>-->
+<!--	                <field  name="hr_emp_disp_reinstate_on"/>-->
+<!--	                <field  name="hr_emp_disp_reinstate_by"/>-->
+<!--	            </tree>-->
+<!--	        </field>-->
+<!--		</record>-->
+<!--	-->
+<!--	    &lt;!&ndash;HR EMPLOYEE DICIPLINE RECORD FIELDS AND (FORM VIEW)>&ndash;&gt;-->
+<!--	    <record id="view_odoocms_hr_discipline_form" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.hr.emp.disp.form</field>-->
+<!--	        <field name="model">odoocms.hr.emp.discipline</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <form string="Employee Discipline Detail">-->
+<!--	                <sheet>-->
+<!--	                    <group>-->
+<!--	                        <h2 style="color:blue">Employee Discipline Detail</h2>-->
+<!--	                        <group col="4" colspan="2">-->
+<!--	                         <field style="width:100%"  name="hr_emp_disp_offence_dtl"/>-->
+<!--	                         <field style="width:100%"  name="hr_emp_disp_offence_dt" />-->
+<!--	                         <field style="width:100%"  name="hr_emp_disp_offence_place"/>-->
+<!--	                         <field style="width:100%"  name="hr_emp_disp_inq"/>-->
+<!--	                         <field style="width:100%"  name="hr_emp_disp_head_by"/>-->
+<!--	                         <field style="width:100%"  name="hr_emp_disp_punish"/>-->
+<!--	                         <field style="width:100%"  name="hr_emp_disp_punish_award"/>-->
+<!--	                         <field style="width:100%"  name="hr_emp_disp_reinstate"/>-->
+<!--							 <field style="width:100%"  name="hr_emp_disp_reinstate_on"/>-->
+<!--	                         <field style="width:100%"  name="hr_emp_disp_reinstate_by"/>-->
+<!--	                         <field style="width:100%"  name="hr_emp_disp_remarks"/>-->
+<!--	                         <field style="width:100%"  name="punishment_awarded_on" />-->
+<!--	                         <field style="width:100%"  name="punishment_awarded_by" />-->
+<!--	                        </group>-->
+<!--	                    </group>-->
+<!--	                </sheet>-->
+<!--	            </form>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	    -->
+<!--	    &lt;!&ndash;HR EMPLOYEE DISCIPLINE RECORD MENU ACTION&ndash;&gt;-->
+<!--	    <record id="action_odoocms_emp_discipline" model="ir.actions.act_window">-->
+<!--	        <field name="name">HR EMPLOYEE DISCIPLINE RECORD SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.emp.discipline</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="context">-->
+<!--	            {-->
+<!--	                'search_default_faculty_staff_id': [active_id],-->
+<!--	                'default_faculty_staff_id': active_id,-->
+<!--	            }-->
+<!--	        </field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup Employee Discipline Record here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	    	    -->
+<!--	    &lt;!&ndash;FACULTY POST AUTHORIZATION SETUP PAGE FIELDS AND (FORM VIEW)>&ndash;&gt;-->
+<!--	    <record id="view_odoocms_faculty_post_auth_form" model="ir.ui.view">-->
+<!--	        <field name="name">odoocms.faculty.post.auth.form</field>-->
+<!--	        <field name="model">odoocms.hr.faculty.post.auth.master</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <form string="Faculty Post Authorization Detail">-->
+<!--	                <sheet>-->
+<!--	                    <group>-->
+<!--	                        <group  colspan="10" >-->
+<!--	                            <h2 style="color:blue">Faculty Post Authorization Setup Information</h2>-->
+<!--	                            <group colspan="5">-->
+<!--		                            <field name="hr_fac_post_institute" required="1" />-->
+<!--	                            </group>-->
+<!--	                            <group>-->
+<!--		                            <field style="width:25%" name="hr_fac_post_nod" />-->
+<!--		                            <field style="width:25%" name="hr_fac_post_ss" />-->
+<!--		                            <field style="width:25%" name="hr_fac_post_tap" />-->
+<!--		                            <field style="width:25%" name="hr_fac_post_auth_prof" />-->
+<!--		                            <field style="width:25%" name="hr_fac_post_auth_associate_prof" />-->
+<!--	                            </group>-->
+<!--	                            <group>-->
+<!--		                            <field style="width:25%" name="hr_fac_post_auth_assistant_prof" />-->
+<!--		                            <field style="width:25%" name="hr_fac_post_auth_lec" />-->
+<!--		                            <field style="width:25%" name="hr_fac_post_date" />-->
+<!--		                            <field style="width:25%" name="hr_fac_post_dept_code" />-->
+<!--		                            <field style="width:25%" name="hr_fac_post_lab_eng_civil" />-->
+<!--		                            <field style="width:25%" name="hr_fac_post_lab_eng_mil" />-->
+<!--	                            </group>-->
+<!--	                        </group>-->
+<!--	                     </group>-->
+<!--	                     <notebook>-->
+<!--						 &lt;!&ndash; Faculty Post Authorization Detail Page&ndash;&gt;-->
+<!--	                        <page name="faculty_post_auth_setup_info" string="__Faculty Post Detail__">-->
+<!--	                            <field name="hr_fac_post_child_ids" string="Faculty Post Detail Record">-->
+<!--	                                <tree >-->
+<!--	                                    <field name="hr_fac_dtl_acad_car"/>-->
+<!--	                                    <field name="hr_fac_dtl_fac_ratio"/>-->
+<!--	                                    <field name="hr_fac_dtl_std_ratio"/>-->
+<!--	                                    <field name="hr_fac_dtl_ss"/>-->
+<!--	                                    <field name="hr_fac_dtl_miltary_std"/>-->
+<!--	                                    <field name="hr_fac_dtl_civil_std"/>-->
+<!--	                                    <field name="hr_fac_dtl_nod"/>-->
+<!--	                                    <field name="hr_fac_dtl_auth_post"/>-->
+<!--	                                    <field name="hr_fac_dtl_fac_std_ratio"/>-->
+<!--	                                </tree>-->
+<!--	                                &lt;!&ndash;Below is the Form View of post table &ndash;&gt;-->
+<!--	                                <form>-->
+<!--	                                    <group>-->
+<!--	                                    <field name="hr_fac_dtl_acad_car"/>-->
+<!--	                                    <field name="hr_fac_dtl_fac_ratio"/>-->
+<!--	                                    <field name="hr_fac_dtl_std_ratio"/>-->
+<!--	                                    <field name="hr_fac_dtl_ss"/>-->
+<!--	                                    <field name="hr_fac_dtl_miltary_std"/>-->
+<!--	                                    <field name="hr_fac_dtl_civil_std"/>-->
+<!--	                                    <field name="hr_fac_dtl_nod"/>-->
+<!--	                                    <field name="hr_fac_dtl_auth_post"/>-->
+<!--	                                    <field name="hr_fac_dtl_fac_std_ratio"/>-->
+<!--	                                    </group>-->
+<!--	                                </form>-->
+<!--	                            </field>-->
+<!--	                        </page>-->
+<!--	                    </notebook>-->
+<!--	                </sheet>-->
+<!--	            </form>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash; Wizard to Create Employee & User from Faculty form &ndash;&gt;-->
+<!--	    <record id="view_faculty_create_employee_form" model="ir.ui.view">-->
+<!--	        <field name="name">wizard.faculty.employee.form</field>-->
+<!--	        <field name="model">wizard.faculty.employee</field>-->
+<!--	        <field name="arch" type="xml">-->
+<!--	            <form string="Create Employee">-->
+<!--	                <group col="4">-->
+<!--	                    <field name="user_boolean"/>-->
+<!--	                </group>-->
+<!--	                <footer groups="base.group_user">-->
+<!--	                    <button name="create_employee" type="object" string="Create Employee" class="oe_highlight"/>-->
+<!--	                    <button string="Cancel" special="cancel"/>-->
+<!--	                </footer>-->
+<!--	            </form>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	    -->
+<!--	    <record id="action_faculty_create_employee" model="ir.actions.act_window">-->
+<!--	        <field name="name">Create Employee</field>-->
+<!--	        <field name="res_model">wizard.faculty.employee</field>-->
+<!--	        <field name="view_mode">form</field>-->
+<!--	        <field name="view_id" ref="view_faculty_create_employee_form"/>-->
+<!--	        <field name="target">new</field>-->
+<!--	    </record>-->
+
+<!--	     &lt;!&ndash;HR Academic Category MENU ACTION&ndash;&gt;-->
+<!--	    <record id="action_odoocms_acad_category" model="ir.actions.act_window">-->
+<!--	        <field name="name">Category</field>-->
+<!--	        <field name="res_model">odoocms.acad.category</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup HR Academic Category here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	    -->
+<!--	     &lt;!&ndash;HR DESIGNATION MENU ACTION&ndash;&gt;-->
+<!--	    <record id="action_odoocms_designation" model="ir.actions.act_window">-->
+<!--	        <field name="name">HR DESIGNATION SETUP SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.designation</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup Designation here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash;HR QUALIFICATION MENU ACTION&ndash;&gt;-->
+<!--	    <record id="action_odoocms_hr_qualification" model="ir.actions.act_window">-->
+<!--	        <field name="name">HR QUALIFICATION SETUP SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.qualification</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup HR Qualification here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash;HR COMPETENT AUTHORITY MENU ACTION&ndash;&gt;-->
+<!--	    <record id="action_odoocms_hr_ca" model="ir.actions.act_window">-->
+<!--	        <field name="name">HR COMPETENT AUTHORITY SETUP SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.ca</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup HR Competent Authority here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash;HR COMPETENT AUTHORITY MEETING MENU ACTION&ndash;&gt;-->
+<!--	    <record id="action_odoocms_hr_ca_meeting" model="ir.actions.act_window">-->
+<!--	        <field name="name">HR COMPETENT AUTHORITY MEETING SETUP SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.ca.meeting</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup HR Competent Authority Meeting here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash;HR SCALE MENU ACTION&ndash;&gt;-->
+<!--	    <record id="action_odoocms_hr_scale" model="ir.actions.act_window">-->
+<!--	        <field name="name">SCALE SETUP SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.scale</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup Scale here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash;HR UNIVERSITY MENU ACTION&ndash;&gt;-->
+<!--	    <record id="action_odoocms_hr_uni" model="ir.actions.act_window">-->
+<!--	        <field name="name">UNIVERSITY SETUP SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.university</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup University here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash;HR POST MENU ACTION&ndash;&gt;-->
+<!--	    <record id="action_odoocms_hr_post" model="ir.actions.act_window">-->
+<!--	        <field name="name">POST SETUP SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.post</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup Post here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash;HR FORCES MENU ACTION&ndash;&gt;-->
+<!--	    <record id="action_odoocms_hr_force" model="ir.actions.act_window">-->
+<!--	        <field name="name">FORCES SETUP SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.forces</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup Forces here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash;HR ARMS MENU ACTION&ndash;&gt;-->
+<!--	    <record id="action_odoocms_hr_arm" model="ir.actions.act_window">-->
+<!--	        <field name="name">ARMS SETUP SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.arm</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup ARMS here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash;HR RANKS MENU ACTION&ndash;&gt;-->
+<!--	    <record id="action_odoocms_hr_rank" model="ir.actions.act_window">-->
+<!--	        <field name="name">RANKS SETUP SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.ranks</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup RANKS here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash;HR FACULTY POST AUTHORIZATION MENU ACTION&ndash;&gt;-->
+<!--	    <record id="action_odoocms_hr_faculty_post_auth" model="ir.actions.act_window">-->
+<!--	        <field name="name">FACULTY POST AUTHORIZATION SETUP SCREEN</field>-->
+<!--	        <field name="res_model">odoocms.hr.faculty.post.auth.master</field>-->
+<!--	        <field name="view_mode">tree,form</field>-->
+<!--	        <field name="help" type="html">-->
+<!--	            <p class="oe_view_nocontent_create">-->
+<!--	                Create/Setup Faculty Post Authorization here.-->
+<!--	            </p>-->
+<!--	        </field>-->
+<!--	    </record>-->
+<!--	-->
+<!--	    &lt;!&ndash; HR SETUP SCREEN MENU &ndash;&gt;-->
+<!--	    <menuitem id="menu_odoocms_hr_setup"-->
+<!--	            name="HR SETUP SCREENS"-->
+<!--	            parent="menu_odoocms_faculty_root"-->
+<!--	            sequence="11" />-->
+<!--	-->
+<!--	    &lt;!&ndash; DEFINE DESIGNATION &ndash;&gt;-->
+<!--	    <menuitem id="menu_odoocms_designation"-->
+<!--	         name="Designation"-->
+<!--	         parent="menu_odoocms_hr_setup"-->
+<!--	         action="action_odoocms_designation" />-->
+
+<!--		&lt;!&ndash; Menu Academic Category &ndash;&gt;-->
+<!--		<menuitem id="menu_odoocms_acad_category"-->
+<!--			action="action_odoocms_acad_category"-->
+<!--			name="Categorys"-->
+<!--			parent="menu_odoocms_hr_setup"-->
+<!--			/>	                -->
+<!--	    &lt;!&ndash; DEFINE Qualification &ndash;&gt;-->
+<!--	    <menuitem   id="menu_odoocms_hr_qualification"-->
+<!--	                name="Qualification"-->
+<!--	                parent="menu_odoocms_hr_setup"-->
+<!--	                action="action_odoocms_hr_qualification" />-->
+<!--	                -->
+<!--	    &lt;!&ndash; DEFINE COMPETENT AUTHORITY &ndash;&gt;-->
+<!--	    <menuitem   id="menu_odoocms_hr_ca"-->
+<!--	                name="Competent Authority"-->
+<!--	                parent="menu_odoocms_hr_setup"-->
+<!--	                action="action_odoocms_hr_ca"-->
+<!--	    />-->
+<!--	    -->
+<!--	    &lt;!&ndash; DEFINE COMPETENT AUTHORITY MEETING &ndash;&gt;-->
+<!--	    <menuitem   id="menu_odoocms_hr_ca_meeting"-->
+<!--	                name="Competent Authority Meeting"-->
+<!--	                parent="menu_odoocms_hr_setup"-->
+<!--	                action="action_odoocms_hr_ca_meeting"-->
+<!--	    />-->
+<!--	    -->
+<!--	    &lt;!&ndash; DEFINE SCALES &ndash;&gt;-->
+<!--	    <menuitem   id="menu_odoocms_hr_scale"-->
+<!--	                name="Scales"-->
+<!--	                parent="menu_odoocms_hr_setup"-->
+<!--	                action="action_odoocms_hr_scale"-->
+<!--	    />-->
+<!--	    -->
+<!--	    &lt;!&ndash; DEFINE UNIVERSITY &ndash;&gt;-->
+<!--	    <menuitem   id="menu_odoocms_hr_uni"-->
+<!--	                name="University"-->
+<!--	                parent="menu_odoocms_hr_setup"-->
+<!--	                action="action_odoocms_hr_uni"-->
+<!--	    />-->
+<!--	    -->
+<!--	    &lt;!&ndash; DEFINE POST &ndash;&gt;-->
+<!--	    <menuitem   id="menu_odoocms_hr_post"-->
+<!--	                name="Post Setup"-->
+<!--	                parent="menu_odoocms_hr_setup"-->
+<!--	                action="action_odoocms_hr_post"-->
+<!--	      />-->
+<!--	-->
+<!--	    &lt;!&ndash; DEFINE FORCES &ndash;&gt;-->
+<!--	    <menuitem   id="menu_odoocms_hr_force"-->
+<!--	                name="Forces Setup"-->
+<!--	                parent="menu_odoocms_hr_setup"-->
+<!--	                action="action_odoocms_hr_force"-->
+<!--	      />-->
+<!--	      -->
+<!--	    &lt;!&ndash; DEFINE ARMS &ndash;&gt;-->
+<!--	    <menuitem   id="menu_odoocms_hr_arm"-->
+<!--	                name="ARMS Setup"-->
+<!--	                parent="menu_odoocms_hr_setup"-->
+<!--	                action="action_odoocms_hr_arm"-->
+<!--	      />-->
+<!--	      -->
+<!--	    &lt;!&ndash; DEFINE RANKSS &ndash;&gt;-->
+<!--	    <menuitem   id="menu_odoocms_hr_rank"-->
+<!--	                name="Ranks Setup"-->
+<!--	                parent="menu_odoocms_hr_setup"-->
+<!--	                action="action_odoocms_hr_rank"-->
+<!--	      />-->
+<!--	-->
+<!--	    &lt;!&ndash; DEFINE FACULTY POST AUTHORIZATION &ndash;&gt;-->
+<!--	    <menuitem   id="menu_odoocms_hr_faculty_post_auth"-->
+<!--	                name="Faculty Post Authorization Setup"-->
+<!--	                parent="menu_odoocms_hr_setup"-->
+<!--	                action="action_odoocms_hr_faculty_post_auth"-->
+<!--	      />-->
+<!--	      -->
+<!--	    &lt;!&ndash; DEFINE EMPLOYEE RECORD &ndash;&gt;-->
+<!--	    <menuitem   id="menu_odoocms_hr_emp_rec"-->
+<!--	                name="Employee Record"-->
+<!--	                parent="menu_odoocms_hr_setup"-->
+<!--	                action="action_odoocms_emp_rec"-->
+<!--	      />-->
+<!--      </data>-->
+<!--</odoo>-->

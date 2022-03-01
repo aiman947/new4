@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--
+ <record id="view_odoocms_faculty_staff_hr_tree" model="ir.ui.view">
+        <field name="name">odoocms.faculty.staff.hr.tree</field>
+        <field name="model">odoocms.faculty.staff</field>
+        <field name="arch" type="xml">
+            <tree string="Faculty">
+
+                <field name="blood_group"/>
+
+             </tree>
+        </field>
+    </record>
+    -->
+</odoo>

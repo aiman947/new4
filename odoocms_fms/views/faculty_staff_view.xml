@@ -1,0 +1,1884 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    ###########################odoocms Hr Emp rec
+    master##########################################################################
+    <record id="view_odoocms_hr_emp_rec_search" model="ir.ui.view">
+        <field name="name">odoocms.hr.emp.rec.master.search</field>
+        <field name="model">odoocms.hr.emp.rec.master</field>
+        <field name="arch" type="xml">
+            <search string="Search Employee Master Record">
+                <field name="hr_emp_placed_inst"/>
+                <field name="hr_emp_placed_dept"/>
+                <field name="hr_emp_desig"/>
+                <separator/>
+                <filter string="In Active" name="inactive" domain="[('hr_emp_status', '=', 'I')]"
+                        help="In Active Records"/>
+                <filter string="Faculty" name="faculty_categ" domain="[('hr_emp_category', '=', 'F')]"
+                        help="Faculty Records"/>
+                <filter string="Support Staff" name="support_staff" domain="[('hr_emp_category', '=', 'S')]"
+                        help="Support Staff Records"/>
+                <group expand="0" string="Group By">
+                    <filter string="Institute" name="group_by_inst" domain="[]"
+                            context="{'group_by': 'hr_emp_placed_inst'}"/>
+                    <filter string="Department" name="group_by_department" domain="[]"
+                            context="{'group_by': 'hr_emp_placed_dept'}"/>
+                    <filter string="Designation" name="group_by_designation" domain="[]"
+                            context="{'group_by': 'hr_emp_desig'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_odoocms_hr_emp_rec_tree" model="ir.ui.view">
+        <field name="name">odoocms.hr.emp.rec.tree</field>
+        <field name="model">odoocms.hr.emp.rec.master</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Record Detail"
+                  decoration-info="hr_emp_status == 'A'"
+                  decoration-bf="hr_emp_status == 'A'"
+                  decoration-muted="hr_emp_status == 'I'">
+                <field name="hr_emp_desig"/>
+                <field name="hr_emp_placed_inst"/>
+                <field name="hr_emp_placed_dept"/>
+                <field name="hr_emp_eff_dt"/>
+                <field name="hr_emp_eff_from_dt"/>
+                <field name="hr_emp_status"/>
+                <field name="hr_emp_placed_branch"/>
+                <field name="hr_emp_post_auth_dtl"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_odoocms_hr_emp_rec_form" model="ir.ui.view">
+        <field name="name">odoocms.hr.emp.rec.form</field>
+        <field name="model">odoocms.hr.emp.rec.master</field>
+        <field name="arch" type="xml">
+            <form string="Employee Record Detail">
+                <header>
+                    <button name="status_change" type="object" groups="odoocms_fms.group_cms_fms_manager"
+                            string="Active"/>
+                </header>
+                <sheet>
+                    <h2 style="color:blue">Employee Record Information</h2>
+                    <br></br>
+                    <group col="4" colspan="2">
+                        <field style="width:100%" name="hr_emp_status" readonly="1"/>
+                        <field style="width:100%" name="hr_emp_eff_dt" required="0"/>
+                        <field style="width:100%" name="hr_emp_eff_from_dt" required="0"/>
+                        <field style="width:100%" name="hr_emp_payroll_id"/>
+                        <field style="width:100%" name="hr_emp_placed_branch"/>
+                        <field style="width:100%" name="hr_emp_post_auth_dtl"/>
+                        <field style="width:100%" name="hr_emp_post_ex_auth_dtl"/>
+                        <field style="width:100%" name="hr_emp_conflict_post"/>
+                        <field style="width:100%" name="hr_emp_erp_post_id"/>
+                        <field style="width:100%" name="hr_emp_salary"/>
+                        <field style="width:100%" name="hr_emp_oo_no"/>
+                        <field style="width:100%" name="hr_emp_oo_dt"/>
+                        <field style="width:100%" name="hr_emp_def_status"/>
+                        <field style="width:100%" name="hr_emp_placed_inst" required="0"/>
+                        <field style="width:100%" name="hr_emp_placed_dept" required="0"/>
+                        <field style="width:100%" name="hr_emp_ebps"/>
+                        <field style="width:100%" name="hr_emp_desig" required="0"/>
+                        <field style="width:100%" name="hr_emp_project"/>
+                        <field style="width:100%" name="hr_emp_type"/>
+                        <field style="width:100%" name="hr_emp_hec_supvr" type="checkbox"/>
+                        <field style="width:100%" name="hr_emp_sub_cat"/>
+                        <field style="width:100%" name="hr_emp_pay_pkg_type"/>
+                        <field style="width:100%" name="hr_emp_hiring"/>
+                        <field style="width:100%" name="hr_emp_category"/>
+                        <field style="width:100%" name="hr_emp_action_type"/>
+                        <field style="width:100%" name="hr_emp_remarks"/>
+                    </group>
+                    <notebook>
+                        <page name="emp_rec_history_info" string="Individual Authority">
+                            <field name="fms_hr_erm_ids" string="Individual Authority Record">
+                                <tree>
+                                    <field name="hr_emp_dtl_auth_id"/>
+                                    <field name="hr_emp_dtl_held_dt"/>
+                                    <field name="hr_emp_dtl_emp_id"/>
+                                    <field name="hr_emp_dtl_emp_ref"/>
+                                </tree>
+                                <!--Below is the Form View of post table -->
+                                <form>
+                                    <group col="4" colspan="2">
+                                        <field style="width:100%" name="hr_emp_dtl_auth_id"/>
+                                        <field style="width:100%" name="hr_emp_dtl_held_dt"/>
+                                        <field style="width:100%" name="hr_emp_dtl_emp_id"/>
+                                        <field style="width:100%" name="hr_emp_dtl_emp_ref"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <page name="emp_rec_comp_auth_info" string="Competent Authorities (Body)">
+                            <field name="fms_hr_ermm_ids" string="Competent Authorities (Body)">
+                                <tree>
+                                    <field name="hr_emp_dtl1_auth_id"/>
+                                    <field name="hr_emp_dtl1_gov_body_id"/>
+                                    <field name="hr_emp_dtl1_chaired_by"/>
+                                    <field name="hr_emp_dtl1_held_dt"/>
+                                </tree>
+                                <!--Below is the Form View of post table -->
+                                <form>
+                                    <group col="4" colspan="2">
+                                        <field style="width:100%" name="hr_emp_dtl1_auth_id"/>
+                                        <field style="width:100%" name="hr_emp_dtl1_gov_body_id"/>
+                                        <field style="width:100%" name="hr_emp_dtl1_chaired_by"/>
+                                        <field style="width:100%" name="hr_emp_dtl1_held_dt"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_odoocms_emp_rec" model="ir.actions.act_window">
+        <field name="name">HR EMPLOYEE RECORD SCREEN</field>
+        <field name="res_model">odoocms.hr.emp.rec.master</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_odoocms_hr_emp_rec_tree"/>
+        <field name="search_view_id" ref="view_odoocms_hr_emp_rec_search"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create/Setup Employee Record here.
+            </p>
+        </field>
+    </record>
+
+    ###########################odoocms Hr Emp rec
+    master##########################################################################
+
+
+    <!--   <record id="view_employee_form_imherit" model="ir.ui.view">
+           <field name="name">hr.employee.form</field>
+           <field name="model">hr.employee</field>
+           <field name="priority" eval="50"/>
+           <field name="inherit_id" ref="hr.view_employee_form"/>
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name='parent_id']" position="after">
+               <field name="father_name" />
+               </xpath>
+               <xpath expr="//field[@name='phone']" position="after">
+               <field name="religion" />
+               </xpath>
+           </field>
+       </record>
+   -->
+
+
+    <!--OPEN IT AARSOL CODE -->
+
+    <record id="view_odoocms_faculty_staff_kanban" model="ir.ui.view">
+        <field name="name">odoocms.faculty.staffnew.kanban</field>
+        <field name="model">odoocms.faculty.staffnew</field>
+        <field name="arch" type="xml">
+            <kanban class="odoocms_faculty_staff_kanban">
+                <field name="id" modifiers="{'readonly':true}"/>
+                <field name="first_name" modifiers="{}"/>
+                <field name="work_email" modifiers="{'readonly':true}"/>
+                <field name="mobile_phone" modifiers="{'readonly':true}"/>
+                <!--                <field name="image_128" modifiers="{'readonly':true}"/>-->
+
+                <!--                <templates>-->
+                <!--                    <t t-name="kanban-box">-->
+                <!--                        <div class="oe_kanban_global_click o_res_partner_kanban">-->
+                <!--                            <div class="o_kanban_image">-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </t>-->
+                <!--                </templates>-->
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_res_partner_kanban">
+
+                            <div class="oe_kanban_details" modifiers="{}">
+                                <strong class="o_kanban_record_title oe_partner_heading" modifiers="{}">
+                                    <field name="name" modifiers="{}"/>
+                                </strong>
+                                <div class="o_kanban_tags_section oe_kanban_partner_categories" modifiers="{}"/>
+                                <ul modifiers="{}">
+                                    <li t-if="record.mobile_phone.raw_value" modifiers="{}">
+                                        <i class="fa fa-phone" role="img" aria-label="Phone" title="Phone"
+                                           modifiers="{}"/>
+                                        <field name="mobile_phone" modifiers="{'readonly':true}"/>
+                                    </li>
+                                    <li t-if="record.work_email.raw_value" modifiers="{}">
+                                        <i class="fa fa-envelope" role="img" aria-label="Email" title="Email"
+                                           modifiers="{}"/>
+                                        <a t-attf-href="mailto:#{record.work_email.value}" modifiers="{}">
+                                            <field name="work_email" modifiers="{'readonly':true}"/>
+                                        </a>
+                                    </li>
+
+                                    <li t-if="record.cnic_no_fms.raw_value">
+                                        <field name="cnic_no_fms"/>
+                                    </li>
+
+                                    <li t-if="record.date_of_birth.raw_value">
+                                        <field name="date_of_birth"/>
+                                    </li>
+                                    <li t-if="record.gender.raw_value">
+                                        <field name="gender"/>
+                                    </li>
+                                    <!--                                    <li t-if="record.email_fms.raw_value">-->
+                                    <!--                                        <field name="email_fms"/>-->
+                                    <!--                                    </li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <!--
+        <t t-if="record.image_128.raw_value">
+            <img t-att-src="kanban_image('odoocms.faculty.staff', 'image_128', record.id.raw_value)"  alt="Faculty"/>
+        </t>
+
+        <t t-if="!record.image_128.raw_value">
+            <img t-att-src='_s + "/base/static/src/img/avatar.png"' alt="Faculty"/>
+        </t>
+    -->
+    <!--
+    </div>
+    <div class="oe_kanban_details">
+        <strong class="o_kanban_record_title oe_partner_heading">
+        -->
+    <!--<field name="name"/>
+    -->
+    <!--
+        </strong>
+        <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
+        <ul>
+        -->
+    <!--
+    <li t-if="record.contact_address.raw_value">
+        <field name="contact_address" />
+    </li>
+    -->
+    <!--
+    <li t-if="record.name.raw_value">
+        <field name="name" />
+
+    </li>
+
+    <li t-if="record.cnic_no_fms.raw_value">
+        <field name="cnic_no_fms"/>
+    </li>
+
+    <li t-if="record.date_of_birth.raw_value">
+        <field name="date_of_birth"/>
+    </li>
+    -->
+    <!--
+    <li t-if="record.gender.raw_value">
+        <field name="gender"/>
+    </li>
+    <li t-if="record.email_fms.raw_value">
+        <field name="email_fms"/>
+    </li>
+
+    <li t-if="record.mobile.raw_value">
+        <i class="fa fa-phone" role="img" aria-label="Phone" title="Phone"/>
+
+    </li>
+
+    <li t-if="record.email.raw_value">
+         <i class="fa fa-envelope" role="img" aria-label="Email" title="Email"/>
+         <a t-attf-href="mailto:#{record.email.value}">
+            <field name="email"/>
+             </a>
+     </li>
+
+    </ul>
+    </div>
+</div>
+</t>
+</templates>
+</kanban>
+</field>
+</record>
+
+
+    <!- HR Qualification setup Tree View-->
+    <record id="view_odoocms_hr_qual_tree" model="ir.ui.view">
+        <field name="name">odoocms.hr.qualification.tree</field>
+        <field name="model">odoocms.hr.qualification</field>
+        <field name="arch" type="xml">
+            <tree string="Qualification" editable="bottom">
+                <field name="hr_qual_short_desc"/>
+                <field name="hr_qual_long_desc"/>
+                <field name="hr_qual_status"/>
+                <field name="hr_qual_desc"/>
+            </tree>
+        </field>
+    </record>
+    <!-- HR Competent Authority Setup Tree View-->
+    <record id="view_odoocms_hr_ca_tree" model="ir.ui.view">
+        <field name="name">odoocms.hr.ca.tree</field>
+        <field name="model">odoocms.hr.ca</field>
+        <field name="arch" type="xml">
+            <tree string="Competent Authority" editable="bottom">
+                <field name="hr_ca_body_type"/>
+                <field name="hr_ca_name"/>
+                <field name="hr_ca_code"/>
+                <field name="hr_ca_level"/>
+                <field name="hr_ca_status"/>
+            </tree>
+        </field>
+    </record>
+    <!-- HR Competent Authority Meeting Setup Tree View-->
+    <record id="view_odoocms_hr_ca_meeting_tree" model="ir.ui.view">
+        <field name="name">odoocms.hr.ca.meeting.tree</field>
+        <field name="model">odoocms.hr.ca.meeting</field>
+        <field name="arch" type="xml">
+            <tree string="Competent Authority Meeting" editable="bottom">
+                <field name="hr_ca_id" options="{'no_create':True}"/>
+                <field name="hr_ca_meeting_dt"/>
+                <field name="hr_ca_meeting_chairby"/>
+                <field name="hr_ca_emp_id"/>
+                <field name="hr_ca_meeting_remarks"/>
+            </tree>
+        </field>
+    </record>
+    <!--    &lt;!&ndash; HR University Setup Tree View&ndash;&gt;-->
+    <!--    <record id="view_odoocms_hr_uni_tree" model="ir.ui.view">-->
+    <!--        <field name="name">odoocms.hr.uni.tree</field>-->
+    <!--        <field name="model">odoocms.hr.university</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <tree string="Competent Authority Meeting" editable="bottom">-->
+    <!--                <field name="hr_uni_desc_long" options="{'no_create':True}"/>-->
+    <!--                <field name="hr_uni_desc_short" />-->
+    <!--                <field name="hr_uni_country_code" />-->
+    <!--                <field name="hr_uni_type" />-->
+    <!--                <field name="hr_uni_status" />-->
+    <!--            </tree>-->
+    <!--           </field>-->
+    <!--    </record>-->
+    <!-- HR Scale Setup Tree View-->
+    <record id="view_odoocms_hr_scale_tree" model="ir.ui.view">
+        <field name="name">odoocms.hr.scale.tree</field>
+        <field name="model">odoocms.hr.scale</field>
+        <field name="arch" type="xml">
+            <tree string="Scale" editable="bottom">
+                <field name="hr_scale_no" options="{'no_create':True}"/>
+                <field name="hr_scale_desc"/>
+            </tree>
+        </field>
+    </record>
+    <!--    &lt;!&ndash; HR Forces Setup Tree View&ndash;&gt;-->
+    <!--    <record id="view_odoocms_hr_force_tree" model="ir.ui.view">-->
+    <!--        <field name="name">odoocms.hr.force.tree</field>-->
+    <!--        <field name="model">odoocms.hr.forces</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <tree string="Forces" editable="bottom">-->
+    <!--                <field name="hr_force_desc" />-->
+    <!--                <field name="hr_force_status" />-->
+    <!--            </tree>-->
+    <!--           </field>-->
+    <!--    </record>-->
+    <!-- HR Arms Setup Tree View-->
+    <record id="view_odoocms_hr_arm_tree" model="ir.ui.view">
+        <field name="name">odoocms.hr.arm.tree</field>
+        <field name="model">odoocms.hr.arm</field>
+        <field name="arch" type="xml">
+            <tree string="ARMS" editable="bottom">
+                <field name="hr_arm_desc"/>
+                <field name="hr_arm_status"/>
+            </tree>
+        </field>
+    </record>
+    <!-- HR Ranks Setup Tree View-->
+    <record id="view_odoocms_hr_rank_tree" model="ir.ui.view">
+        <field name="name">odoocms.hr.rank.tree</field>
+        <field name="model">odoocms.hr.ranks</field>
+        <field name="arch" type="xml">
+            <tree string="Ranks" editable="bottom">
+                <field name="hr_rank_desc"/>
+                <field name="hr_rank_status"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!--POST SETUP PAGE FIELDS AND (FORM VIEW)>-->
+    <record id="view_odoocms_post_form" model="ir.ui.view">
+        <field name="name">odoocms.post.form</field>
+        <field name="model">odoocms.hr.post</field>
+        <field name="arch" type="xml">
+            <form string="Post Detail">
+                <sheet>
+                    <group>
+                        <group colspan="1">
+                            <h2 style="color:blue">Post Setup Information</h2>
+                            <field name="hr_post_name" required="1"/>
+                            <field name="id" required="0" string="Post Code"/>
+                            <!--<field name="hr_post_code" required="1"/> -->
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <!-- Post Page-->
+                        <page name="post_setup_info" string="__Post Detail__">
+                            <field name="hr_post_child_ids" string="Post Detail Record">
+                                <tree>
+                                    <field name="hr_post_dtl_ed"/>
+                                    <field name="hr_post_dtl_post_list"/>
+                                    <field name="hr_post_dtl_type"/>
+                                    <field name="hr_post_level"/>
+                                    <field name="hr_post_category"/>
+                                    <field name="hr_post_sub_category"/>
+                                    <field name="hr_post_ebps"/>
+                                    <field name="hr_post_sliding_scale"/>
+                                    <field name="hr_post_min_ebps"/>
+                                    <field name="hr_post_max_ebps"/>
+                                </tree>
+                                <!--Below is the Form View of post table -->
+                                <form>
+                                    <group>
+                                        <field name="hr_post_dtl_ed"/>
+                                        <field name="hr_post_dtl_post_list"/>
+                                        <field name="hr_post_dtl_type"/>
+                                        <field name="hr_post_level"/>
+                                        <field name="hr_post_category"/>
+                                        <field name="hr_post_sub_category"/>
+                                        <field name="hr_post_ebps"/>
+                                        <field name="hr_post_sliding_scale"/>
+                                        <field name="hr_post_min_ebps"/>
+                                        <field name="hr_post_max_ebps"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--FACULTY POST AUTHORIZATION SETUP PAGE FIELDS AND (FORM VIEW)>-->
+    <record id="view_odoocms_faculty_post_auth_form" model="ir.ui.view">
+        <field name="name">odoocms.faculty.post.auth.form</field>
+        <field name="model">odoocms.hr.faculty.post.auth.master</field>
+        <field name="arch" type="xml">
+            <form string="Faculty Post Authorization Detail">
+                <sheet>
+                    <group>
+                        <group colspan="10">
+                            <h2 style="color:blue">Faculty Post Authorization Setup Information</h2>
+
+                            <group colspan="5">
+                                <field name="hr_fac_post_institute" required="1"/>
+                            </group>
+
+                            <group>
+                                <field name="hr_fac_post_nod"/>
+                                <field name="hr_fac_post_ss"/>
+                                <field name="hr_fac_post_tap"/>
+                                <field name="hr_fac_post_auth_prof"/>
+                                <field name="hr_fac_post_auth_associate_prof"/>
+                            </group>
+
+                            <group>
+                                <field name="hr_fac_post_auth_assistant_prof"/>
+                                <field name="hr_fac_post_auth_lec"/>
+                                <field name="hr_fac_post_date"/>
+                                <field name="hr_fac_post_dept_code"/>
+                                <field name="hr_fac_post_lab_eng_civil"/>
+                                <field name="hr_fac_post_lab_eng_mil"/>
+                            </group>
+                            <!--<field name="hr_post_code" required="1"/> -->
+                        </group>
+                    </group>
+                    <notebook>
+                        <!-- Faculty Post Authorization Detail Page-->
+                        <page name="faculty_post_auth_setup_info" string="__Faculty Post Detail__">
+                            <field name="hr_fac_post_child_ids" string="Faculty Post Detail Record">
+
+
+                                <tree>
+                                    <field name="hr_fac_dtl_acad_car"/>
+                                    <field name="hr_fac_dtl_fac_ratio"/>
+                                    <field name="hr_fac_dtl_std_ratio"/>
+                                    <field name="hr_fac_dtl_ss"/>
+                                    <field name="hr_fac_dtl_miltary_std"/>
+                                    <field name="hr_fac_dtl_civil_std"/>
+                                    <field name="hr_fac_dtl_nod"/>
+                                    <field name="hr_fac_dtl_auth_post"/>
+                                    <field name="hr_fac_dtl_fac_std_ratio"/>
+                                </tree>
+                                <!--Below is the Form View of post table -->
+                                <form>
+                                    <group>
+                                        <field name="hr_fac_dtl_acad_car"/>
+                                        <field name="hr_fac_dtl_fac_ratio"/>
+                                        <field name="hr_fac_dtl_std_ratio"/>
+                                        <field name="hr_fac_dtl_ss"/>
+                                        <field name="hr_fac_dtl_miltary_std"/>
+                                        <field name="hr_fac_dtl_civil_std"/>
+                                        <field name="hr_fac_dtl_nod"/>
+                                        <field name="hr_fac_dtl_auth_post"/>
+                                        <field name="hr_fac_dtl_fac_std_ratio"/>
+                                    </group>
+                                </form>
+
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!--    <record id="view_odoocms_faculty_staff_tree" model="ir.ui.view">-->
+    <!--        <field name="name">odoocms.faculty.staff.tree</field>-->
+    <!--        <field name="model">odoocms.faculty.staff</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <tree string="Faculty">-->
+    <!--                &lt;!&ndash;<field name="name"/>-->
+    <!--                <field name="gender"/>-->
+    <!--                <field name="date_of_birth"/>&ndash;&gt;-->
+    <!--                <field name="blood_group"/>-->
+    <!--                &lt;!&ndash;<field name="email"/>-->
+    <!--                <field name="phone"/>-->
+    <!--                <field name="emergency_contact"/>&ndash;&gt;-->
+    <!--             </tree>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <!--    &lt;!&ndash;FIRST PAGE FIELDS AND (FORM VIEW)>&ndash;&gt;-->
+    <!--    <record id="view_odoocms_faculty_staff_form" model="ir.ui.view">-->
+    <!--        <field name="name">odoocms.faculty.staff.form</field>-->
+    <!--        <field name="model">odoocms.faculty.staff</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <form string="Faculty">-->
+    <!--                <header>-->
+    <!--                    &lt;!&ndash;                     <button name="%(action_faculty_create_employee)d" type="action" class="oe_highlight"&ndash;&gt;-->
+    <!--                    &lt;!&ndash;                            string="Create Employee" groups="odoocms.group_cms_manager"&ndash;&gt;-->
+    <!--                    &lt;!&ndash;                            help="Click to create Employee Record for this Faculty Member"&ndash;&gt;-->
+    <!--                    &lt;!&ndash;                            attrs="{'invisible': [('employee_id', '!=',False)]}"&ndash;&gt;-->
+    <!--                    &lt;!&ndash;                            />&ndash;&gt;-->
+
+    <!--                    &lt;!&ndash;-->
+    <!--                    <button type="object" name="create_user" string="Create User" groups="odoocms.group_cms_manager"-->
+    <!--                            class="oe_highlight" attrs="{'invisible': [('user_id', '!=', False)]}"/>&ndash;&gt;-->
+    <!--                    &lt;!&ndash;                    <button type="object" name="create_employee" string="Create Employee" groups="odoocms.group_cms_manager"&ndash;&gt;-->
+    <!--                    &lt;!&ndash;                        class="oe_highlight" attrs="{'invisible': [('user_id', '!=', False)]}"/>&ndash;&gt;-->
+    <!--                </header>-->
+
+    <!--                <sheet>-->
+    <!--                    <div class="oe_button_box" name="button_box" >-->
+    <!--&lt;!&ndash;                      <button name="toggle_active" type="object" groups="odoocms.group_cms_manager"&ndash;&gt;-->
+    <!--&lt;!&ndash;                                class="oe_stat_button" icon="fa-archive" string="Leave Record">&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                            &lt;!&ndash;&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </button>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                    <button name="show_hr_emp" type="object" groups="odoocms.group_cms_manager"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    class="oe_stat_button" icon="fa-archive"  string="Contracts" >&ndash;&gt;-->
+    <!--&lt;!&ndash;                    </button>&ndash;&gt;-->
+
+    <!--                    </div>-->
+
+
+    <!--                    <field name="image_1920" widget='image' class="oe_avatar" options='{"preview_image":"image_128"}'/>-->
+    <!--                    &lt;!&ndash;-->
+    <!--                    <field name="user_id" invisible="1"/>-->
+    <!--                    &ndash;&gt;-->
+    <!--                    <div class="oe_title">-->
+    <!--                        <h1>-->
+    <!--                            <table>-->
+    <!--                                <tr>-->
+
+    <!--                                    <td style="padding-right:10px;">-->
+    <!--                                     <field name="name"   required="0" readonly="0" placeholder="First Name"/>-->
+    <!--                                     &lt;!&ndash;-->
+    <!--                                        <field name="first_name"   required="0" readonly="1" placeholder="First Name"/>-->
+    <!--                                     &ndash;&gt;-->
+    <!--                                     </td>-->
+    <!--                                    &lt;!&ndash;-->
+    <!--                                    <td style="padding-right:10px;">-->
+    <!--                                        <field name="last_name" placeholder="Name"/>-->
+    <!--                                    </td>-->
+    <!--                                    &ndash;&gt;-->
+    <!--                                </tr>-->
+    <!--                            </table>-->
+    <!--                        </h1>-->
+    <!--                    </div>-->
+
+    <!--                    <group>-->
+    <!--                        <group  colspan="1" >-->
+    <!--                            <h2 style="color:blue">Personal Information</h2>-->
+    <!--                            &lt;!&ndash;-->
+    <!--                            <field name="employee_inherit_id" required="1" readonly="0"-->
+    <!--                            options="{'no_quick_create':True, 'no_create_edit': True, 'limit': 10}"/>-->
+    <!--                            &ndash;&gt;-->
+    <!--                            <field name="cnic_no_fms" required="1"/>-->
+    <!--                            <field name="religion"/>-->
+    <!--                            <field name="sect_fms"/>-->
+    <!--&lt;!&ndash;                            <field name="blood_group"/>&ndash;&gt;-->
+    <!--                            <field name="domocile_fms"/>-->
+    <!--                        </group>-->
+    <!--                        &lt;!&ndash;-->
+    <!--                        <group  colspan="1" >-->
+    <!--                            <h2 style="color:blue">Personal Information</h2>-->
+    <!--                            <field name="employee_inherit_id" required="1" readonly="0"/>-->
+    <!--                            <field name="cnic_no_fms"/>-->
+    <!--                            <field name="nationality"/>-->
+    <!--                            <field name="nationality_s_fms"/>-->
+    <!--                            <field name="date_of_birth"/>-->
+    <!--                            <field name="pob_fms"/>-->
+    <!--                        </group>-->
+    <!--                        &ndash;&gt;-->
+
+    <!--                        &lt;!&ndash;-->
+    <!--                        <group>-->
+    <!--                            <field name="religion"/>-->
+    <!--                            <field name="sect_fms"/>-->
+    <!--                            <field name="blood_group"/>-->
+    <!--                            <field name="domocile_fms"/>-->
+    <!--                            <field name="marital_status_fms"/>-->
+    <!--                            <field name="gender"/>-->
+    <!--                        </group>-->
+    <!--                        &ndash;&gt;-->
+    <!--                        <group>-->
+    <!--                             <h2 style="color:blue">Campus Status</h2>-->
+    <!--                             <field name="nust_campus_fms"/>-->
+    <!--                        </group>-->
+    <!--                        &lt;!&ndash;-->
+    <!--                        <group>-->
+    <!--                             <h2 style="color:blue">Mailing Address</h2>-->
+    <!--                             <field name="nust_campus_fms"/>-->
+    <!--                             <field name="mail_address_fms"/>-->
+    <!--                             <field name="mail_city_fms"/>-->
+    <!--                             <field name="mail_country_fms"/>-->
+    <!--                        </group>-->
+    <!--                        &ndash;&gt;-->
+    <!--                        &lt;!&ndash;-->
+    <!--                        <group>-->
+    <!--                              <h2 style="color:blue">Permanent Address</h2>-->
+    <!--                              <field name="perm_address_fms"/>-->
+    <!--                              <field name="perm_city_fms"/>-->
+    <!--                              <field name="perm_country_fms"/>-->
+    <!--                        </group>-->
+    <!--                        &ndash;&gt;-->
+    <!--                        </group>-->
+
+    <!--                    &lt;!&ndash;CLOSE THE DIV AS NOT REQUIRED (ORIGINAL-CODE)-->
+    <!--                                        <div class="oe_title">-->
+    <!--                                            <h2>-->
+    <!--                                                <field name="title" placeholder="Title" style="width: 30%%" />-->
+    <!--                                            </h2>-->
+
+    <!--                                            <label for="name" class="oe_edit_only" string="Name"/>-->
+    <!--                                            <h2>-->
+    <!--                                                <table>-->
+    <!--                                                    <tr>-->
+    <!--                                                        <td style="padding-right:10px;"><field name="first_name" required="1" placeholder="First Name" /></td>-->
+    <!--                                                        <td style="padding-right:10px;"><field name="last_name" placeholder="Last Name" /></td>-->
+    <!--                                                    </tr>-->
+    <!--                                                </table>-->
+    <!--                                            </h2>-->
+    <!--                                        </div>-->
+
+    <!--                                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"-->
+    <!--                                               string="Tags" placeholder="e.g. Medalist"/>-->
+    <!--                    &ndash;&gt;-->
+    <!--&lt;!&ndash;                     <notebook>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Address Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        &lt;!&ndash;&ndash;&gt;-->
+    <!--&lt;!&ndash;                         <page name="address_info" string="Address" style="background-color:blue">&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                  <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <h2> Mailing Address </h2>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="nust_campus_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="mail_address_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="mail_city_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="mail_country_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <h2> Permanent Address </h2>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="perm_address_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="perm_city_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="perm_country_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Contact Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="Contact_info" string="Contact">&ndash;&gt;-->
+    <!--&lt;!&ndash;                            &lt;!&ndash;&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                              <group string="" colspan="1">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                  <h2 style="color:blue">Contact Detail</h2>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                  <field name="mobile_p_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="mobile_s_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="landline_res_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="landline_off_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="emergency_no_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="skype_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="email_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="email_off_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="uni_mail_addr_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="profile_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="linkedin_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="twitter_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="facebook_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="google_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                              <group string="" colspan="1">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                  <h2 style="color:blue">Contact Detail</h2>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="skype_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="profile_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="linkedin_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="twitter_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="facebook_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="google_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <h2 style="color:blue"> Father Information </h2>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="father_name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="father_cnic"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="father_address"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="father_profession"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="father_status"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="agree_status_fms"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                 </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                 </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Passport Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="emp_passport_info" string="Passport">&ndash;&gt;-->
+    <!--&lt;!&ndash;                            &lt;!&ndash;fms_child_ids is like an object in XML&ndash;&gt;-->
+    <!--&lt;!&ndash;                                and we refer its fields like below e:g&ndash;&gt;-->
+    <!--&lt;!&ndash;                                fms_child_fms.fms_passport_no&ndash;&gt;-->
+    <!--&lt;!&ndash;                             &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <field name="fms_child_ids">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree >&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_passport_no"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_passport_dt_issue"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_passport_dt_expiry"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_passport_booklet_no"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_passport_country" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_passport_issue_body" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &lt;!&ndash;Below is the Form View of fms_passport table &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <form >&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_passport_no"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_passport_dt_issue"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_passport_dt_expiry"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_passport_booklet_no"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_passport_country" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_passport_issue_body" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                               </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Scholarships/MemberShip Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="emp_scholar_info" string="Scholarships">&ndash;&gt;-->
+    <!--&lt;!&ndash;                             &lt;!&ndash;&ndash;&gt;-->
+    <!--&lt;!&ndash;                             fms_faculty_staff_master_ids contains child id of&ndash;&gt;-->
+    <!--&lt;!&ndash;                             odoocms.scholarships is like an object in XML&ndash;&gt;-->
+    <!--&lt;!&ndash;                             and we refer its fields like below e:g&ndash;&gt;-->
+    <!--&lt;!&ndash;                             fms_child_fms.fms_passport_no&ndash;&gt;-->
+    <!--&lt;!&ndash;                             &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <field name="fms_scholar_child_ids">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_type"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_award_body"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_scholar_dt_from"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_scholar_dt_to"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_scholar_desc"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &lt;!&ndash;Below is the Form View of odoocms.scholarships table&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_type"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_award_body"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_scholar_dt_from"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_scholar_dt_to"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_scholar_desc"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Honor/Award Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="emp_honor_award_info" string="Honor/Award">&ndash;&gt;-->
+    <!--&lt;!&ndash;                            &lt;!&ndash;fms_faculty_staff_master_ids1 contains child id of&ndash;&gt;-->
+    <!--&lt;!&ndash;                             odoocms.scholarships is like an object in XML&ndash;&gt;-->
+    <!--&lt;!&ndash;                             and we refer its fields like below e:g&ndash;&gt;-->
+    <!--&lt;!&ndash;                             fms_child_ha_ids.fms_passport_no&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <field name="fms_child_ha_ids">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="type"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="nomination"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="status"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="awarding_body"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="country_id"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="date"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="description"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &lt;!&ndash;Below is the Form View of odoocms.scholarships table&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="type"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="nomination"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="status"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="awarding_body"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="country_id"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="date"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="description"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Next of Kin Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="emp_next_kin_info" string="Next of Kin">&ndash;&gt;-->
+    <!--&lt;!&ndash;                             &lt;!&ndash;fms_faculty_staff_master_ids2 contains child id of&ndash;&gt;-->
+    <!--&lt;!&ndash;                             odoocms.nextofkin is like an object in XML&ndash;&gt;-->
+    <!--&lt;!&ndash;                             and we refer its fields like below e:g&ndash;&gt;-->
+    <!--&lt;!&ndash;                             fms_nok_child_ids.fms_nok_name&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <field name="fms_nok_child_ids" string="Next of Kin Record">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_nok_name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_relationship_id"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_relationship_desc"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_nok_cnic"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_nok_contact"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_nok_address"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_nok_percentage"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &lt;!&ndash;Below is the Form View of odoocms.scholarships table &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                     <field name="fms_nok_name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_relationship_id"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_relationship_desc"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_nok_cnic"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_nok_contact"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_nok_address"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_nok_percentage"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                               </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Training/Course Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="emp_train_info" string="Training/Courses/Workshops">&ndash;&gt;-->
+    <!--&lt;!&ndash;                            &lt;!&ndash;fms_faculty_staff_master_ids3 contains child id of&ndash;&gt;-->
+    <!--&lt;!&ndash;                             odoocms.training(table) is like an object in XML&ndash;&gt;-->
+    <!--&lt;!&ndash;                             and we refer its fields like below e:g&ndash;&gt;-->
+    <!--&lt;!&ndash;                             fms_training_child_ids.fms_coll_name&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <field name="fms_training_child_ids" string="Training/Course/Workshop Record">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="type"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="date_from"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="date_to"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="center"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="org_body"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="sponsor_body"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="sponsor_by"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="organized_by"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &lt;!&ndash;Below is the Form View of odoocms.scholarships table&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                     <field name="type"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="date_from"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="date_to"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="center"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="org_body"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="sponsor_body"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="sponsor_by"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="organized_by"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </form>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                               </field>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Collaborations Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="emp_collaboration_info" string="Collaborations">&ndash;&gt;-->
+    <!--&lt;!&ndash;                            &lt;!&ndash;fms_faculty_staff_master_ids4 contains child id of&ndash;&gt;-->
+    <!--&lt;!&ndash;                             odoocms.collaboration(table) is like an object in XML&ndash;&gt;-->
+    <!--&lt;!&ndash;                             and we refer its fields like below e:g&ndash;&gt;-->
+    <!--&lt;!&ndash;                             fms_collaboration_child_ids.fms_coll_name&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <field name="fms_coll_child_ids">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_coll_type"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_coll_dt_from"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_coll_dt_to"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_coll_organization"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_coll_country"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_coll_status"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &lt;!&ndash;Below is the Form View of odoocms.scholarships table&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                   <field name="fms_coll_type"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_coll_dt_from"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_coll_dt_to"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_coll_organization"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_coll_country"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_coll_status"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Experience Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="emp_experience_info" string="Experience">&ndash;&gt;-->
+    <!--&lt;!&ndash;                            &lt;!&ndash;fms_faculty_staff_master_ids5 contains child id of&ndash;&gt;-->
+    <!--&lt;!&ndash;                             odoocms.experience(table) is like an object in XML&ndash;&gt;-->
+    <!--&lt;!&ndash;                             and we refer its fields like below e:g&ndash;&gt;-->
+    <!--&lt;!&ndash;                             fms_experience_child_ids.fms_exp_name&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <field name="fms_experience_child_ids"  string="Faculty Experience Record">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                 <tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_type"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_desig"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_org_name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_org_address"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_dt_from"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_dt_to"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_job_desc"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_reason"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_miltary"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_ref_name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_ref_desig"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_ref_mobile"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_ref_landline"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_ref_email"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                 &lt;!&ndash;Below is the Form View of odoocms.experience table&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                     <field name="fms_experience_type"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_desig"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_org_name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_org_address"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_dt_from"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_dt_to"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_job_desc"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_reason"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_miltary"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <h2 style="color:blue">Job References </h2>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_ref_name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_ref_desig"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_ref_mobile"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_ref_landline"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_experience_ref_email"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Project Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="emp_project_info" string="Project">&ndash;&gt;-->
+    <!--&lt;!&ndash;                            &lt;!&ndash;fms_faculty_staff_master_ids7 contains child id of&ndash;&gt;-->
+    <!--&lt;!&ndash;                             odoocms.faculty.projects(table) is like an object in XML&ndash;&gt;-->
+    <!--&lt;!&ndash;                             and we refer its fields like below e:g&ndash;&gt;-->
+    <!--&lt;!&ndash;                             fms_project_child_ids.fms_exp_name&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <field name="fms_project_child_ids"  string="Faculty Project Record">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                 <tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_type"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_status"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_remun"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_remun_amount"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_agency"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_dt_from"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_dt_to"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_url"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_position"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_remun_co"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_grant"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_grant_amount"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_transfer"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                  </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &lt;!&ndash;Below is the Form View of odoocms.scholarships table&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                     <field name="fms_project_type"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_status"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_remun"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_remun_amount"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_agency"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_dt_from"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_dt_to"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_url"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_position"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_remun_co"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_grant"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_grant_amount"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_project_transfer"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Defence Family Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="emp_family_info" string="Family">&ndash;&gt;-->
+    <!--&lt;!&ndash;                            &lt;!&ndash;fms_faculty_staff_master_ids7 contains child id of&ndash;&gt;-->
+    <!--&lt;!&ndash;                             odoocms.faculty.projects(table) is like an object in XML&ndash;&gt;-->
+    <!--&lt;!&ndash;                             and we refer its fields like below e:g&ndash;&gt;-->
+    <!--&lt;!&ndash;                             fms_project_child_ids.fms_exp_name&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <field name="fms_family_child_ids"  string="Faculty Spouse Record">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                 <tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_family_name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_family_dob"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_family_nationality_p"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_family_nationality_s"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_family_dom"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_family_marriage_place"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_family_cnic"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_family_profession"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_family_status"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_family_desig"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_family_employer"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_family_employer_name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                 </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &lt;!&ndash;Below is the Form View of odoocms.family table&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="fms_family_name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="fms_family_dob"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="fms_family_nationality_p"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="fms_family_nationality_s"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="fms_family_dom"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="fms_family_marriage_place"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="fms_family_cnic"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="fms_family_profession"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="fms_family_status"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="fms_family_desig"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="fms_family_employer"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="fms_family_employer_name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            </field>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                            <field name="fms_family_children_ids"  string="Faculty Children Record">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="birth_place"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="birth_date"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="gender"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                 </tree>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                                <form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="birth_place"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="birth_date"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="gender"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            </field>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Professional Qual/Cert Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="emp_prof_info" string="Qualification/Certification">&ndash;&gt;-->
+    <!--&lt;!&ndash;                            &lt;!&ndash;fms_faculty_staff_master_ids6 contains child id of&ndash;&gt;-->
+    <!--&lt;!&ndash;                             odoocms.profqualification(table) is like an object in XML&ndash;&gt;-->
+    <!--&lt;!&ndash;                             and we refer its fields like below e:g&ndash;&gt;-->
+    <!--&lt;!&ndash;                             fms_profqualification_child_ids.fms_exp_name&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <field name="fms_profqualification_child_ids"  string="Faculty Prefessional Qualification/Certification Record">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_profqualification_cert"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_profqualification_status"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_profqualification_inst"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_profqualification_country"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_profqualification_dt_from"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_profqualification_dt_to"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_profqualification_div"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_profqualification_miltary"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                  </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &lt;!&ndash;Below is the Form View of odoocms.scholarships table&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                     <field name="fms_profqualification_cert"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_profqualification_status"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_profqualification_inst"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_profqualification_country"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_profqualification_dt_from"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_profqualification_dt_to"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_profqualification_div"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_profqualification_miltary"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Courses Taught Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="emp_course_taught_info" string="Courses Taught">&ndash;&gt;-->
+    <!--&lt;!&ndash;                         <field name="fms_course_taught_ids">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree >&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_faculty_ct_term" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_faculty_ct_courseid" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &lt;!&ndash;Below is the Form View of fms_passport table &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <form >&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_faculty_ct_term" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_faculty_ct_courseid" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                               </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Defence Employee Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="defence_emp_info" string="Defence Employee">&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <field name="fms_defence_employee_ids" string="Faculty Defence">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree >&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_service" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_rank" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_arm" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_service" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_doc" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_served" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_emp_status" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_course" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_remarks" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &lt;!&ndash;Below is the Form View of fms_Defence_Employee table &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <form >&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_service" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_rank" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_arm" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_service" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_doc" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_served" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_emp_status" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_course" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_defence_remarks" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                          </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Skills Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="emp_skill_info" string="Skills">&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <field name="fms_skills_ids" string="Faculty Skill">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree >&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_skills" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_skills_desc" />&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                                </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &lt;!&ndash;Below is the Form View of fms_Skill table &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <form >&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_skills" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_skills_desc" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                          </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Professional Registration Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="emp_prof_reg_info" string="Prof Registration">&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <field name="fms_prof_reg_ids" string="Faculty Professional Registration">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree >&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_prof_reg_body" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_prof_reg_no" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_prof_reg_dt" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_prof_reg_validity" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                &lt;!&ndash;Below is the Form View of fms_prof_reg table &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <form >&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_prof_reg_body" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_prof_reg_no" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_prof_reg_dt" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_prof_reg_validity" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                          </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; HEC PHD Supervisor Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="emp_hec_info" string="HEC Approved PhD Supervisors">&ndash;&gt;-->
+    <!--&lt;!&ndash;                         <field name="fms_hec_ids" string="Faculty HEC Approved PHD Supervisors">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree >&ndash;&gt;-->
+    <!--&lt;!&ndash;                                     <field name="fms_hec_status" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                     <field name="fms_hec_curr_status_dt" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                     <field name="fms_hec_valid_till_dt" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                     <field name="fms_hec_remarks" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                     <field name="fms_hec_status" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                     <field name="fms_hec_curr_status_dt" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                     <field name="fms_hec_valid_till_dt" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                     <field name="fms_hec_remarks" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                          </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                     </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Academic Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                     <page name="emp_academic_info" string="Academic">&ndash;&gt;-->
+    <!--&lt;!&ndash;                         <field name="fms_academic_ids" string="Faculty Academic">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_qualification" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_uni" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_country" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_degree" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_degree_duration" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_special" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_total_perc" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_obt_perc" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_dur_from" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_dur_to" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_deg_status" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_deg_ver" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_deg_cat" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <form >&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                   <field name="fms_acad_qualification" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_uni" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_country" options="{'no_create':True}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_degree" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_degree_duration" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_special" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_total_perc" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_obt_perc" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_dur_from" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_dur_to" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_deg_status" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_deg_ver" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="fms_acad_deg_cat" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </form>&ndash;&gt;-->
+    <!--&lt;!&ndash;                          </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Academic Workload Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="emp_acad_workload_info" string="Academic Workload">&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; Student Supervised Page&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="emp_student_sup_info" string="Student Supervised">&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        &lt;!&ndash;Original Code&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="detail" string="Faculty Details">&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="code"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="father_name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="language_ids" widget="many2many_tags" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="date_of_birth"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="nationality" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="gender"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="blood_group"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="emergency_contact" context="{'show_address': 1}"&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        options='{"always_reload": True}' />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        &lt;!&ndash;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page name="contact" string="Contact Details">&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="email" required="1"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="employee_id" readonly="1"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="user_id"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="employee_id"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="mobile" required="1"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="phone"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            </group>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                            <group string="Address Detail" name="address">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <label for="type" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <div name="div_type">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field class="oe_inline" name="type" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <label for="street" string="Address" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <div name="div_address">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="street" placeholder="Street..." />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="street2" placeholder="Street2" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <div class="address_format">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="city" placeholder="City" style="width: 40%%" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="state_id" class="oe_no_button"&ndash;&gt;-->
+    <!--&lt;!&ndash;                                            placeholder="State" style="width: 37%%" options='{"no_open": True}' />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <field name="zip" placeholder="ZIP" style="width: 20%%" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="country_id" placeholder="Country" class="oe_no_button"&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        options='{"no_open": True}' />&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            </group>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        &lt;!&ndash;Original Code&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page string="Honor/Awards">&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <field name="award_ids">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree string="Honor/Awards" editable="bottom">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="date"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="certificate"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        &lt;!&ndash;Original code&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page string="Publications">&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <field name="publication_ids">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree string="Publications" editable="bottom">&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                                    <field name="name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="topic"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="date"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="paper_attachment"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        &lt;!&ndash;&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <page string="Extra Activites">&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <field name="extra_activity_ids">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tree string="Extra Activites" editable="bottom">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="remarks"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <field name="date"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </tree>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            </field>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </page>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        &ndash;&gt;&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                    </notebook>&ndash;&gt;-->
+    <!--                </sheet>-->
+    <!--                <div class="oe_chatter">-->
+    <!--                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>-->
+    <!--                    <field name="activity_ids" widget="mail_activity"/>-->
+    <!--                    <field name="message_ids" widget="mail_thread"/>-->
+    <!--                </div>-->
+    <!--            </form>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <!--    <record id="view_odoocms_faculty_staff_search" model="ir.ui.view">-->
+    <!--        <field name="name">odoocms.faculty.staff.search</field>-->
+    <!--        <field name="model">odoocms.faculty.staff</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <search string="Faculty">-->
+    <!--&lt;!&ndash;                <field name="name"/>&ndash;&gt;-->
+    <!--                &lt;!&ndash; <field name="blood_group"/>&ndash;&gt;-->
+    <!--                <newline/>-->
+    <!--&lt;!&ndash;                <group expand="0" string="Group By...">&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <filter name="blood_group" string="Blood Group" domain="[]"&ndash;&gt;-->
+    <!--&lt;!&ndash;                            context="{'group_by':'blood_group'}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <filter name="nationality" string="Nationality" domain="[]"&ndash;&gt;-->
+    <!--&lt;!&ndash;                            context="{'group_by':'nationality'}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <filter string='Gender' name="group_gender" domain="[]" context="{'group_by' : 'gender'}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                </group>&ndash;&gt;-->
+    <!--            </search>-->
+    <!--        </field>-->
+    <!--    </record>-->
+    <!--    <record id="action_odoocms_faculty_staff" model="ir.actions.act_window">-->
+    <!--        <field name="name">Faculty Staff</field>-->
+    <!--        <field name="res_model">odoocms.faculty.staff</field>-->
+    <!--        <field name="view_mode">tree,form</field>-->
+    <!--&lt;!&ndash;        kanban&ndash;&gt;-->
+    <!--        <field name="search_view_id" ref="view_odoocms_faculty_staff_search"/>-->
+    <!--        <field name="domain">[]</field>-->
+    <!--        <field name="context">{}</field>-->
+    <!--        <field name="help" type="html">-->
+    <!--            <p class="oe_view_nocontent_create">-->
+    <!--                Create the First Faculty Member here.-->
+    <!--            </p>-->
+    <!--        </field>-->
+    <!--    </record>-->
+    #################################################################
+    <!--    <record id="view_employee_form_address_inherit" model="ir.ui.view">-->
+    <!--        <field name="name">hr.employee.form.address.inherit</field>-->
+    <!--        <field name="model">hr.employee</field>-->
+    <!--        <field name="inherit_id" ref="hr.view_employee_form"/>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            &lt;!&ndash;-->
+    <!--            <field name="address_home_id" position="replace">-->
+    <!--                <field name="address_home_id" domain="[('supplier', '=', True)]" context="{'show_address': 1, 'employee': True}" options='{"always_reload": True, "highlight_first_line": True}'/>-->
+    <!--            </field>-->
+    <!--            <field name="address_id" position="replace">-->
+    <!--                <field name="address_id" context="{'show_address': 1}" options='{"always_reload": True, "highlight_first_line": True}'/>-->
+    <!--            </field> &ndash;&gt;-->
+    <!--            <field name="user_id" position="replace">-->
+    <!--                <field name="user_id" string="Related User" domain="[('partner_id', '=', address_home_id)]"/>-->
+    <!--            </field>-->
+    <!--        </field>-->
+    <!--    </record>-->
+    #################################################################################3
+    <!--    &lt;!&ndash; Wizard to Create Employee & User from Faculty form &ndash;&gt;-->
+
+    <!--    <record id="view_faculty_create_employee_form" model="ir.ui.view">-->
+    <!--        <field name="name">wizard.faculty.employee.form</field>-->
+    <!--        <field name="model">wizard.faculty.employee</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <form string="Create Employee">-->
+    <!--                <group col="4">-->
+    <!--                    <field name="user_boolean"/>-->
+    <!--                </group>-->
+    <!--                <footer groups="base.group_user">-->
+    <!--                    <button name="create_employee" type="object" string="Create Employee" class="oe_highlight"/>-->
+    <!--                    <button string="Cancel" special="cancel"/>-->
+    <!--                </footer>-->
+    <!--            </form>-->
+    <!--        </field>-->
+    <!--    </record>-->
+    <!--    <record id="action_faculty_create_employee" model="ir.actions.act_window">-->
+    <!--        <field name="name">Create Employee</field>-->
+    <!--        <field name="res_model">wizard.faculty.employee</field>-->
+    <!--        <field name="view_mode">form</field>-->
+    <!--        <field name="view_id" ref="view_faculty_create_employee_form"/>-->
+    <!--        <field name="target">new</field>-->
+    <!--    </record>-->
+
+
+    <!-- HR Designation setup Form View-->
+
+    <record id="view_odoocms_hr_desig_form" model="ir.ui.view">
+        <field name="name">odoocms.hr.designation.form</field>
+        <field name="model">odoocms.designation</field>
+        <field name="arch" type="xml">
+            <form string="Designation">
+                <sheet>
+                    <field name="hr_desig_short_desc"/>
+                    <field name="hr_desig_long_desc"/>
+                    <field name="hr_desg_type"/>
+                    <field name="hr_desg_status"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- HR Designation setup Tree View-->
+    <record id="view_odoocms_hr_desig_tree" model="ir.ui.view">
+        <field name="name">odoocms.hr.designation.tree</field>
+        <field name="model">odoocms.designation</field>
+        <field name="arch" type="xml">
+            <tree string="Designation" editable="bottom">
+                <field name="hr_desig_short_desc"/>
+                <field name="hr_desig_long_desc"/>
+                <field name="hr_desg_type"/>
+                <field name="hr_desg_status"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!--HR DESIGNATION MENU ACTION-->
+    <record id="action_odoocms_designation" model="ir.actions.act_window">
+        <field name="name">HR DESIGNATION SETUP SCREEN</field>
+        <field name="res_model">odoocms.designation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create/Setup Designation here.
+            </p>
+        </field>
+    </record>
+
+    <!--HR QUALIFICATION MENU ACTION-->
+    <record id="action_odoocms_hr_qualification" model="ir.actions.act_window">
+        <field name="name">HR QUALIFICATION SETUP SCREEN</field>
+        <field name="res_model">odoocms.hr.qualification</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create/Setup HR Qualification here.
+            </p>
+        </field>
+    </record>
+
+    <!--HR COMPETENT AUTHORITY MENU ACTION-->
+    <record id="action_odoocms_hr_ca" model="ir.actions.act_window">
+        <field name="name">HR COMPETENT AUTHORITY SETUP SCREEN</field>
+        <field name="res_model">odoocms.hr.ca</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create/Setup HR Competent Authority here.
+            </p>
+        </field>
+    </record>
+
+    <!--HR COMPETENT AUTHORITY MEETING MENU ACTION-->
+    <record id="action_odoocms_hr_ca_meeting" model="ir.actions.act_window">
+        <field name="name">HR COMPETENT AUTHORITY MEETING SETUP SCREEN</field>
+        <field name="res_model">odoocms.hr.ca.meeting</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create/Setup HR Competent Authority Meeting here.
+            </p>
+        </field>
+    </record>
+
+    <!--HR SCALE MENU ACTION-->
+    <record id="action_odoocms_hr_scale" model="ir.actions.act_window">
+        <field name="name">SCALE SETUP SCREEN</field>
+        <field name="res_model">odoocms.hr.scale</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create/Setup Scale here.
+            </p>
+        </field>
+    </record>
+
+    <!--HR UNIVERSITY MENU ACTION-->
+    <record id="action_odoocms_hr_uni" model="ir.actions.act_window">
+        <field name="name">UNIVERSITY SETUP SCREEN</field>
+        <field name="res_model">odoocms.hr.university</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create/Setup University here.
+            </p>
+        </field>
+    </record>
+
+    <!--HR POST MENU ACTION-->
+    <record id="action_odoocms_hr_post" model="ir.actions.act_window">
+        <field name="name">POST SETUP SCREEN</field>
+        <field name="res_model">odoocms.hr.post</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create/Setup Post here.
+            </p>
+        </field>
+    </record>
+
+    <!--HR FORCES MENU ACTION-->
+    <record id="action_odoocms_hr_force" model="ir.actions.act_window">
+        <field name="name">FORCES SETUP SCREEN</field>
+        <field name="res_model">odoocms.hr.forces</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create/Setup Forces here.
+            </p>
+        </field>
+    </record>
+
+    <!--HR ARMS MENU ACTION-->
+    <record id="action_odoocms_hr_arm" model="ir.actions.act_window">
+        <field name="name">ARMS SETUP SCREEN</field>
+        <field name="res_model">odoocms.hr.arm</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create/Setup ARMS here.
+            </p>
+        </field>
+    </record>
+
+    <!--HR RANKS MENU ACTION-->
+    <record id="action_odoocms_hr_rank" model="ir.actions.act_window">
+        <field name="name">RANKS SETUP SCREEN</field>
+        <field name="res_model">odoocms.hr.ranks</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create/Setup RANKS here.
+            </p>
+        </field>
+    </record>
+
+    <!--HR FACULTY POST AUTHORIZATION MENU ACTION-->
+    <record id="action_odoocms_hr_faculty_post_auth" model="ir.actions.act_window">
+        <field name="name">FACULTY POST AUTHORIZATION SETUP SCREEN</field>
+        <field name="res_model">odoocms.hr.faculty.post.auth.master</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create/Setup Faculty Post Authorization here.
+            </p>
+        </field>
+    </record>
+    <!--    action="action_odoocms_faculty_staff"-->
+
+
+    <record id="view_odoocms_faculty_form" model="ir.ui.view">
+        <field name="name">odoocms.faculty.staffnew.form</field>
+        <field name="model">odoocms.faculty.staffnew</field>
+        <field name="arch" type="xml">
+            <form string="Faculty" modifiers="{}">
+                <header modifiers="{}">
+                    <!--		<button type="object" name="create_user" string="Create User" class="oe_highlight" attrs="{'invisible': [('user_id', '!=', False)]}" modifiers="{'invisible':[['user_id','!=',false]]}" options="{}"/>-->
+                </header>
+                <sheet modifiers="{}">
+                    <div class="oe_button_box" name="button_box" modifiers="{}">
+                        <!--			<button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" modifiers="{}" options="{}">-->
+                        <!--				<field name="active" widget="boolean_button" options="{'terminology': 'archive'}" modifiers="{}"/>-->
+                        <!--			</button>-->
+                    </div>
+                    <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image':'image_128'}"
+                           modifiers="{}"/>
+                    <div class="oe_title" modifiers="{}">
+                        <label for="first_name" class="oe_edit_only" string="Name" modifiers="{}"/>
+                        <h2 modifiers="{}">
+                            <table modifiers="{}">
+                                <tr modifiers="{}">
+                                    <td style="padding-right:10px;" modifiers="{}">
+                                        <field name="first_name" required="1" placeholder="First Name"
+                                               modifiers="{'required':true}"/>
+                                    </td>
+                                    <td style="padding-right:10px;" modifiers="{}">
+                                        <field name="last_name" required="1" placeholder="Last Name"
+                                               modifiers="{'required':true}"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </h2>
+                    </div>
+                    <!--        widget="many2many_tags"-->
+                    <field name="tag_ids" options="{'color_field': 'color'}" string="Tags" placeholder="e.g. Medalist"
+                           can_create="true" can_write="true" modifiers="{}"/>
+                    <notebook modifiers="{}">
+                        <page name="detail" string="Faculty Details" modifiers="{}">
+                            <group modifiers="{}">
+                                <group modifiers="{}">
+                                    <field name="code" modifiers="{'readonly':true}"/>
+                                    <field name="father_name" modifiers="{}"/>
+                                    <field name="language_ids" can_create="true" can_write="true" modifiers="{}"/>
+                                    <!--                        widget="many2many_tags" -->
+                                    <field name="date_of_birth" modifiers="{}"/>
+                                    <field name="nationality" can_create="false" can_write="false" modifiers="{}"/>
+                                </group>
+                                <group modifiers="{}">
+                                    <field name="gender" modifiers="{'required':true}"/>
+                                    <field name="blood_group" modifiers="{'required':true}"/>
+                                    <field name="emergency_contact" context="{'show_address': 1}"
+                                           options="{'always_reload': True}" modifiers="{'readonly':true}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="contact" string="Contact Details" modifiers="{}">
+                            <group modifiers="{}">
+                                <group modifiers="{}">
+                                    <field name="work_email" modifiers="{'readonly':true}"/>
+                                    <field name="user_id" string="Login User" can_create="false" can_write="false"
+                                           modifiers="{}"/>
+                                    <field name="employee_id" on_change="1" can_create="true" can_write="true"
+                                           modifiers="{'required':true}"/>
+                                </group>
+                                <group modifiers="{}">
+                                    <field name="mobile_phone" modifiers="{'readonly':true}"/>
+                                    <field name="phone" modifiers="{'readonly':true}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="work_load" string="Work Load" modifiers="{}">
+                            <group modifiers="{}">
+                                <group modifiers="{}">
+                                    <group modifiers="{}">
+                                        <field name="work_email" modifiers="{'readonly':true}"/>
+                                        <field name="user_id" string="Login User" can_create="false" can_write="false"
+                                               modifiers="{}"/>
+                                        <field name="employee_id" on_change="1" can_create="true" can_write="true"
+                                               modifiers="{'required':true}"/>
+                                    </group>
+                                    <group modifiers="{}">
+                                        <field name="mobile_phone" modifiers="{'readonly':true}"/>
+                                        <field name="phone" modifiers="{'readonly':true}"/>
+                                    </group>
+                                </group>
+                                <!--					<group modifiers="{}">-->
+                                <!--						<field name="term_id" on_change="1" can_create="true" can_write="true" modifiers="{}"/>-->
+                                <!--					</group>-->
+                                <group modifiers="{}">
+                                    <!--						<field name="credits" modifiers="{'readonly':true}"/>-->
+                                </group>
+                            </group>
+                            <!--				<field name="classify_id" readonly="1" on_change="1" modifiers="{'readonly':true}"/>-->
+                        </page>
+                        <page string="Publications" modifiers="{}" editable="bottom">
+                            <field name="test_id" modifiers="{}"/>
+                        </page>
+                        <page string="Extra Activites" modifiers="{}">
+                            				<field name="extra_activity_ids" modifiers="{}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter" modifiers="{}">
+                    <field name="message_follower_ids" widget="mail_followers" modifiers="{}"/>
+                    <field name="activity_ids" widget="mail_activity" modifiers="{}"/>
+                    <field name="message_ids" widget="mail_thread" modifiers="{}"
+                           options="{'display_log_button': True}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- HR Designation setup Tree View-->
+    <record id="view_odoocms_faculty" model="ir.ui.view">
+        <field name="name">odoocms.faculty.staffnew.tree</field>
+        <field name="model">odoocms.faculty.staffnew</field>
+        <field name="arch" type="xml">
+            <tree string="Designation" editable="bottom">
+                <field name="domocile_fms"/>
+                <field name="cnic_no_fms" required="1"/>
+                <field name="religion"/>
+                <field name="sect_fms"/>
+                <field name="blood_group"/>
+                <field name="domocile_fms"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <!--tree-->
+    <!--HR DESIGNATION MENU ACTION-->
+    <record id="action_odoocms_faculty_new" model="ir.actions.act_window">
+        <field name="name">odoocms faculty staff</field>
+        <field name="res_model">odoocms.faculty.staffnew</field>
+        <field name="view_mode">kanban,form,tree</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create/Setup Designation here.
+            </p>
+        </field>
+    </record>
+
+    <!-- HR Academic Category View-->
+    <record id="view_odoocms_hr_acad_categ_tree" model="ir.ui.view">
+        <field name="name">odoocms.acad.category.tree</field>
+        <field name="model">odoocms.acad.category</field>
+        <field name="arch" type="xml">
+            <tree string="Category" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    	     <!--HR Academic Category MENU ACTION-->
+    	    <record id="action_odoocms_acad_category" model="ir.actions.act_window">
+    	        <field name="name">Category</field>
+    	        <field name="res_model">odoocms.acad.category</field>
+    	        <field name="view_mode">tree,form</field>
+    	        <field name="help" type="html">
+    	            <p class="oe_view_nocontent_create">
+    	                Create/Setup HR Academic Category here.
+    	            </p>
+    	        </field>
+    	    </record>
+
+
+    <menuitem
+            id="menu_odoocms_faculty_root"
+            name="Faculty Management"
+            web_icon="odoocms_fms,static/description/icon.png"
+            sequence="5"/>
+
+    <!--    action_odoocms_faculty_staff-->
+    <menuitem id="menu_odoocms_faculty_staff" name="Faculty Staff"
+              parent="menu_odoocms_faculty_root" action="action_odoocms_faculty_new"
+              sequence="10"/>
+    <!--    action_odoocms_faculty_staff-->
+
+    <!-- HR SETUP SCREEN MENU -->
+    <menuitem id="menu_odoocms_hr_setup" name="HR SETUP SCREENS"
+              parent="menu_odoocms_faculty_root"
+              sequence="11"/>
+
+    <!-- DEFINE DESIGNATION -->
+    <menuitem id="menu_odoocms_designation"
+              name="Designation"
+              parent="menu_odoocms_hr_setup"
+              action="action_odoocms_designation"
+    />
+        <menuitem id="menu_odoocms_category"
+              name="Category"
+              parent="menu_odoocms_hr_setup"
+              action="action_odoocms_acad_category"
+    />
+    <!-- D
+    <!- DEFINE Qualification -->
+    <menuitem id="menu_odoocms_hr_qualification"
+              name="Qualification"
+              parent="menu_odoocms_hr_setup"
+              action="action_odoocms_hr_qualification"
+    />
+
+    <!-- DEFINE COMPETENT AUTHORITY -->
+    <menuitem id="menu_odoocms_hr_ca"
+              name="Competent Authority"
+              parent="menu_odoocms_hr_setup"
+              action="action_odoocms_hr_ca"
+    />
+    <!-- DEFINE COMPETENT AUTHORITY MEETING -->
+    <menuitem id="menu_odoocms_hr_ca_meeting"
+              name="Competent Authority Meeting"
+              parent="menu_odoocms_hr_setup"
+              action="action_odoocms_hr_ca_meeting"/>
+
+
+    DEFINE SCALES
+    <menuitem id="menu_odoocms_hr_scale"
+              name="Scales"
+              parent="menu_odoocms_hr_setup"
+              action="action_odoocms_hr_scale"
+    />
+    <!-- DEFINE UNIVERSITY -->
+    <menuitem id="menu_odoocms_hr_uni"
+              name="University"
+              parent="menu_odoocms_hr_setup"
+              action="action_odoocms_hr_uni"
+    />
+    <!-- DEFINE POST -->
+    <menuitem id="menu_odoocms_hr_post"
+              name="Post Setup"
+              parent="menu_odoocms_hr_setup"
+              action="action_odoocms_hr_post"
+    />
+
+    <!-- DEFINE FORCES -->
+    <menuitem id="menu_odoocms_hr_force"
+              name="Forces Setup"
+              parent="menu_odoocms_hr_setup"
+              action="action_odoocms_hr_force"
+    />
+    <!-- DEFINE ARMS -->
+    <menuitem id="menu_odoocms_hr_arm"
+              name="ARMS Setup"
+              parent="menu_odoocms_hr_setup"
+              action="action_odoocms_hr_arm"
+    />
+    <!-- DEFINE RANKSS -->
+    <!--    <menuitem   id="menu_odoocms_hr_rank"-->
+    <!--                name="Ranks Setup"-->
+    <!--                parent="menu_odoocms_hr_setup"-->
+    <!--                action="action_odoocms_hr_rank"-->
+    <!--      />-->
+
+    <!-- DEFINE FACULTY POST AUTHORIZATION -->
+    <menuitem id="menu_odoocms_hr_faculty_post_auth"
+              name="Faculty Post Authorization Setup"
+              parent="menu_odoocms_hr_setup"
+              action="action_odoocms_hr_faculty_post_auth"
+    />
+
+
+    <!-- DEFINE HR Emp Rec Master-->
+    <menuitem id="menu_odoocms_hr_faculty_post_auth"
+              name="Faculty Post Authorization Setup"
+              parent="menu_odoocms_hr_setup"
+              action="action_odoocms_emp_rec"
+    />
+
+
+</odoo>
